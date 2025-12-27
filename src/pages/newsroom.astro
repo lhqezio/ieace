@@ -1,0 +1,196 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="Newsroom">
+	<article class="container">
+		<h1>Newsroom</h1>
+		
+		<div class="filters">
+			<button class="filter-btn active" data-tag="all">All</button>
+			<button class="filter-btn" data-tag="general">General</button>
+			<button class="filter-btn" data-tag="case-study">Case Studies</button>
+			<button class="filter-btn" data-tag="research">Research</button>
+		</div>
+
+		<div class="posts-grid">
+			{posts.map((post) => (
+				<article class="post-card" data-tag={post.data.tag}>
+					<div class="post-meta">
+						<time datetime={post.data.pubDate.toISOString()}>
+							{post.data.pubDate.toISOString().split('T')[0].replace(/-/g, '.')}
+						</time>
+						<span class="tag">{post.data.tag}</span>
+					</div>
+					<div class="post-content">
+						<h2><a href={`/posts/${post.slug}`}>{post.data.title}</a></h2>
+						<p>{post.data.description}</p>
+						<a href={`/posts/${post.slug}`} class="read-link">&rarr; read</a>
+					</div>
+				</article>
+			))}
+		</div>
+	</article>
+</Layout>
+
+<style>
+	article {
+		padding: 4rem 1rem;
+	}
+	@media (max-width: 600px) {
+		article {
+			padding: 2rem 1rem;
+		}
+		h1 {
+			font-size: 2.5rem;
+		}
+	}
+	h1 {
+		font-size: 3.5rem;
+		margin-bottom: 3rem;
+		letter-spacing: -0.04em;
+		font-weight: 700;
+		line-height: 1;
+	}
+	.filters {
+		display: flex;
+		gap: 1rem;
+		margin-bottom: 4rem;
+		flex-wrap: wrap;
+	}
+	.filter-btn {
+		font-family: var(--font-mono);
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		padding: 0.5rem 1rem;
+		border: 1px solid var(--color-accent);
+		background: transparent;
+		color: var(--color-text);
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+	.filter-btn:hover,
+	.filter-btn.active {
+		background: var(--color-text);
+		color: var(--color-bg);
+	}
+	.posts-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+	}
+	.post-card {
+		display: grid;
+		grid-template-columns: 120px 1fr;
+		gap: 2rem;
+		align-items: baseline;
+	}
+	.post-meta {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+	.post-meta time {
+		font-family: var(--font-mono);
+		font-size: 0.85rem;
+		color: var(--color-accent);
+	}
+	.tag {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--color-accent);
+		opacity: 0.6;
+	}
+	.post-content h2 {
+		font-size: 1.5rem;
+		margin-bottom: 0.5rem;
+		line-height: 1.3;
+	}
+	.post-content h2 a {
+		text-decoration: none;
+	}
+	.post-content h2 a:hover {
+		text-decoration: underline;
+	}
+	.post-content p {
+		margin-bottom: 1rem;
+		color: var(--color-accent);
+		max-width: 60ch;
+	}
+	.read-link {
+		font-family: var(--font-mono);
+		font-size: 0.9rem;
+		text-decoration: none;
+	}
+	.read-link:hover {
+		text-decoration: underline;
+	}
+
+	@media (max-width: 600px) {
+		.post-card {
+			grid-template-columns: 1fr;
+			gap: 0.5rem;
+		}
+	}
+</style>
+
+<script>
+	const filterBtns = document.querySelectorAll('.filter-btn');
+	const postCards = document.querySelectorAll('.post-card');
+
+	// Handle URL parameters
+	const urlParams = new URLSearchParams(window.location.search);
+	const initialTag = urlParams.get('tag') || 'all';
+
+	// Set initial filter
+	filterBtns.forEach(btn => {
+		if (btn.dataset.tag === initialTag) {
+			btn.classList.add('active');
+		} else {
+			btn.classList.remove('active');
+		}
+	});
+
+	// Apply initial filter
+	filterPosts(initialTag);
+
+	filterBtns.forEach(btn => {
+		btn.addEventListener('click', () => {
+			const tag = btn.dataset.tag;
+			
+			// Update active state
+			filterBtns.forEach(b => b.classList.remove('active'));
+			btn.classList.add('active');
+			
+			// Filter posts
+			filterPosts(tag);
+			
+			// Update URL
+			const url = new URL(window.location.href);
+			if (tag === 'all') {
+				url.searchParams.delete('tag');
+			} else {
+				url.searchParams.set('tag', tag);
+			}
+			window.history.pushState({}, '', url);
+		});
+	});
+
+	function filterPosts(tag) {
+		postCards.forEach(card => {
+			if (tag === 'all' || card.dataset.tag === tag) {
+				card.style.display = 'grid';
+			} else {
+				card.style.display = 'none';
+			}
+		});
+	}
+</script>

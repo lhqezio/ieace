@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('posts');
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+	<article class="post-detail container">
+		<header>
+			<time datetime={post.data.pubDate.toISOString()}>
+				{post.data.pubDate.toISOString().split('T')[0].replace(/-/g, '.')}
+			</time>
+			<h1>{post.data.title}</h1>
+		</header>
+		<div class="content">
+			<Content />
+		</div>
+	</article>
+</Layout>
+
+<style>
+	.post-detail {
+		max-width: 680px;
+		margin: 0 auto;
+		padding: 2rem 0;
+	}
+	header {
+		margin-bottom: 3rem;
+		border-bottom: none;
+		padding: 0;
+	}
+	time {
+		font-family: var(--font-mono);
+		color: var(--color-accent);
+		font-size: 0.9rem;
+		display: block;
+		margin-bottom: 1rem;
+	}
+	h1 {
+		font-size: 2.5rem;
+		line-height: 1.2;
+		letter-spacing: -0.03em;
+	}
+	.content {
+		line-height: 1.6;
+		font-size: 1.1rem;
+	}
+	.content :global(h2) {
+		margin-top: 2.5rem;
+		margin-bottom: 1rem;
+		font-size: 1.5rem;
+	}
+	.content :global(p) {
+		margin-bottom: 1.5rem;
+	}
+	.content :global(ul) {
+		margin-bottom: 1.5rem;
+		padding-left: 1.5rem;
+	}
+	.content :global(li) {
+		margin-bottom: 0.5rem;
+	}
+</style>

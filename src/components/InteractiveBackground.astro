@@ -1,0 +1,133 @@
+<canvas id="bg-canvas"></canvas>
+
+<style>
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.8;
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let stars = [];
+
+  // Configuration
+  const starCount = 150;
+  const mouseGravityMass = 2000; // Strength of gravity
+  const friction = 0.96; // Damping
+  const maxSpeed = 3;
+
+  let mouse = { x: null, y: null };
+
+  class Star {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.vx = (Math.random() - 0.5) * 0.2; // Very slow drift
+      this.vy = (Math.random() - 0.5) * 0.2;
+      this.size = Math.random() * 1.5 + 0.5;
+      
+      // Store original position for "memory" effect (optional, but helps keep structure)
+      // For pure drift, we don't need this. Let's go with pure drift + gravity.
+    }
+
+    update() {
+      // Apply mouse gravity
+      if (mouse.x != null) {
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        
+        // Avoid division by zero and extreme forces at close range
+        if (distance < 1) distance = 1;
+
+        // Gravity force: F = G * (m1 * m2) / r^2
+        // We simplify G and masses into a single constant
+        // Direction is towards mouse
+        let force = mouseGravityMass / (distance * distance);
+        
+        // Cap force to prevent slingshotting too hard
+        if (force > 0.5) force = 0.5;
+
+        let angle = Math.atan2(dy, dx);
+        
+        this.vx += Math.cos(angle) * force;
+        this.vy += Math.sin(angle) * force;
+      }
+
+      // Apply friction (drag) to stabilize
+      this.vx *= friction;
+      this.vy *= friction;
+
+      // Update position
+      this.x += this.vx;
+      this.y += this.vy;
+
+      // Wrap around screen
+      if (this.x < 0) this.x = width;
+      if (this.x > width) this.x = 0;
+      if (this.y < 0) this.y = height;
+      if (this.y > height) this.y = 0;
+    }
+
+    draw() {
+      const color = getComputedStyle(document.documentElement).getPropertyValue('--color-text').trim();
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function init() {
+    resize();
+    stars = [];
+    for (let i = 0; i < starCount; i++) {
+      stars.push(new Star());
+    }
+    animate();
+  }
+
+  function resize() {
+    width = canvas.parentElement.offsetWidth;
+    height = canvas.parentElement.offsetHeight;
+    canvas.width = width;
+    canvas.height = height;
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    
+    stars.forEach(star => {
+      star.update();
+      star.draw();
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => {
+    resize();
+    // Don't reset stars on resize, just let them flow
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+
+  window.addEventListener('mouseleave', () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+
+  init();
+</script>

@@ -1,0 +1,227 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Services">
+	<article class="container">
+		<div class="hero-section">
+			<h1>How we help</h1>
+			<p class="subtitle">We automate workflows and cut operational costs. AI consulting that delivers ROI, not hype.</p>
+		</div>
+
+		<div class="services-list">
+			<div class="service" data-color="cyan">
+				<div class="service-glow"></div>
+				<span class="number">01</span>
+				<div class="service-content">
+					<h2>Workflow Analysis</h2>
+					<p>We identify repetitive tasks burning your team's time and money. Then we build AI agents to automate them—cutting operational costs and freeing your people for high-value work.</p>
+				</div>
+				<div class="service-icon">
+					<svg width="80" height="80" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M8 20L16 12M16 12L24 20M16 12V32M32 20C32 26.6274 26.6274 32 20 32C13.3726 32 8 26.6274 8 20C8 13.3726 13.3726 8 20 8C26.6274 8 32 13.3726 32 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+			</div>
+
+			<div class="service" data-color="violet">
+				<div class="service-glow"></div>
+				<span class="number">02</span>
+				<div class="service-content">
+					<h2>Process Optimization</h2>
+					<p>Re-architect inefficient workflows. Eliminate bottlenecks. Reduce error rates and manual overhead. We make your operations faster and cheaper to run.</p>
+				</div>
+				<div class="service-icon">
+					<svg width="80" height="80" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M20 8V32M8 20H32M14 14L26 26M26 14L14 26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+					</svg>
+				</div>
+			</div>
+
+			<div class="service" data-color="magenta">
+				<div class="service-glow"></div>
+				<span class="number">03</span>
+				<div class="service-content">
+					<h2>Private Infrastructure</h2>
+					<p>Stop paying OpenAI per API call. We build local inference, private RAG, and fine-tuned models that run on your hardware. Lower costs, zero data leakage.</p>
+				</div>
+				<div class="service-icon">
+					<svg width="80" height="80" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect x="8" y="12" width="24" height="4" stroke="currentColor" stroke-width="1.5"/>
+						<rect x="8" y="18" width="24" height="4" stroke="currentColor" stroke-width="1.5"/>
+						<rect x="8" y="24" width="24" height="4" stroke="currentColor" stroke-width="1.5"/>
+					</svg>
+				</div>
+			</div>
+
+			<div class="service" data-color="amber">
+				<div class="service-glow"></div>
+				<span class="number">04</span>
+				<div class="service-content">
+					<h2>Legacy Integration</h2>
+					<p>Automate workflows across old and new systems. Connect AI to your SQL databases, on-prem ERPs, and legacy tech—without expensive migrations or rewrites.</p>
+				</div>
+				<div class="service-icon">
+					<svg width="80" height="80" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M12 20H28M12 20L18 14M12 20L18 26M28 20L22 14M28 20L22 26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</article>
+</Layout>
+
+<style>
+	article {
+		padding: 4rem 1.5rem;
+		max-width: 900px;
+	}
+
+	.hero-section {
+		margin-bottom: 6rem;
+		text-align: center;
+	}
+
+	h1 {
+		font-size: clamp(2.5rem, 7vw, 4.5rem);
+		margin-bottom: 1.5rem;
+		letter-spacing: -0.04em;
+		font-weight: 700;
+		line-height: 1.1;
+	}
+
+	.subtitle {
+		font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+		line-height: 1.4;
+		color: var(--color-text-muted);
+		max-width: 40ch;
+		margin: 0 auto;
+	}
+
+	.services-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+	}
+
+	.service {
+		display: grid;
+		grid-template-columns: 80px 1fr auto;
+		gap: 3rem;
+		padding: 3.5rem 0;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+		position: relative;
+		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.service:last-child {
+		border-bottom: none;
+	}
+
+	.service-glow {
+		position: absolute;
+		bottom: -1px;
+		left: 0;
+		width: 0;
+		height: 2px;
+		background: linear-gradient(90deg, var(--color-accent), transparent);
+		transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.service:hover .service-glow {
+		width: 100%;
+	}
+
+	.service:hover {
+		padding-left: 1rem;
+	}
+
+	.service:hover .service-icon {
+		opacity: 1;
+		transform: scale(1.05);
+	}
+
+	.service:hover .number {
+		opacity: 1;
+		color: var(--color-accent);
+	}
+
+	.number {
+		font-family: var(--font-mono);
+		font-size: 1.5rem;
+		font-weight: 500;
+		color: var(--color-text-muted);
+		opacity: 0.3;
+		transition: all 0.3s ease;
+	}
+
+	.service-content h2 {
+		font-size: clamp(1.6rem, 4vw, 2.2rem);
+		margin-bottom: 1rem;
+		font-weight: 700;
+		letter-spacing: -0.03em;
+		line-height: 1.2;
+		transition: color 0.3s ease;
+	}
+
+	.service:hover h2 {
+		color: var(--color-accent-bright);
+	}
+
+	.service-content p {
+		font-size: 1.05rem;
+		line-height: 1.7;
+		color: var(--color-text-muted);
+		max-width: 55ch;
+	}
+
+	.service-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--color-text-muted);
+		opacity: 0.2;
+		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.service:hover .service-icon {
+		color: var(--color-accent);
+	}
+
+	@media (max-width: 768px) {
+		article {
+			padding: 2rem 1rem;
+		}
+
+		.hero-section {
+			margin-bottom: 4rem;
+		}
+
+		.service {
+			grid-template-columns: 60px 1fr;
+			gap: 1.5rem;
+			padding: 2.5rem 0;
+		}
+
+		.service:hover {
+			padding-left: 0.5rem;
+		}
+
+		.service-icon {
+			display: none;
+		}
+
+		.number {
+			font-size: 1.2rem;
+		}
+
+		.service-content h2 {
+			font-size: 1.5rem;
+		}
+
+		.service-content p {
+			font-size: 1rem;
+		}
+	}
+</style>
+
