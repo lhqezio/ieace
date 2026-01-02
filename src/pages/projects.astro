@@ -1,0 +1,134 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+
+const projects = [
+    {
+        title: "Khu Nông Thị KwaZulu Natal & Bắc Cape, Nam Phi",
+        description:
+            "Đại dự án 180.000 tỷ VNĐ ứng dụng sáng kiến 'Lạc Nghiệp An Cư' tại Nam Phi, kết hợp nông nghiệp công nghệ cao và năng lượng sạch.",
+        category: "ĐANG TRIỂN KHAI",
+        date: "T1 2026",
+        image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800",
+        slug: "south-africa-farm-city",
+        featured: true,
+    },
+    {
+        title: "Điện Mặt Trời Viettel",
+        description:
+            "Lắp đặt hệ thống điện mặt trời 3.45KW và 1.5KW cho các trạm BTS. Tối ưu hóa tích hợp năng lượng tái tạo cho viễn thông.",
+        category: "NĂNG LƯỢNG TÁI TẠO",
+        image: "/images/project-solar.jpg",
+        slug: "viettel-solar",
+    },
+    {
+        title: "Phát Triển Đô Thị Thanh Hóa",
+        description:
+            "Phát triển hệ thống năng lượng tái tạo cho Dự án Phát triển Toàn diện Kinh tế - Xã hội.",
+        category: "PHÁT TRIỂN",
+        image: "/images/project-urban.jpg",
+        slug: "thanh-hoa-urban",
+    },
+    {
+        title: "Thiết Bị Đào Tạo Nghề",
+        description:
+            "Cung cấp hệ thống năng lượng tái tạo cho các trung tâm tại Lai Châu, Sóc Sơn và Thái Nguyên.",
+        category: "GIÁO DỤC",
+        image: "/images/project-training.jpg",
+        slug: "vocational-training",
+    },
+    {
+        title: "Hợp Tác Nghiên Cứu HUST",
+        description:
+            "Hợp tác nghiên cứu ứng dụng AI trong công nghệ năng lượng với Đại học Bách khoa Hà Nội.",
+        category: "NGHIÊN CỨU",
+        slug: "hust-research",
+    },
+    {
+        title: "Nâng Cấp Cao Đẳng Hàng Hải I",
+        description:
+            "Hiện đại hóa các phòng thí nghiệm thiết bị điện và hàng hải để đáp ứng tiêu chuẩn quốc tế.",
+        category: "GIÁO DỤC",
+        slug: "maritime-college",
+    },
+    {
+        title: "Viettel Cambodia",
+        description:
+            "Tư vấn và thiết kế giải pháp điện mặt trời net-zero xuyên biên giới.",
+        category: "TƯ VẤN",
+        slug: "viettel-cambodia",
+    },
+];
+
+const featuredProject = projects.find((p) => p.featured);
+const otherProjects = projects.filter((p) => !p.featured);
+---
+
+<Layout title="Dự Án Tiêu Biểu">
+    <Section className="page-header-section">
+        <div class="page-header">
+            <h1 class="page-title">
+                Dự án <span class="text-accent">Nghiên cứu & Phát triển</span>
+            </h1>
+            <p class="page-intro">
+                Danh mục các công trình công nghệ trọng điểm trong lĩnh vực Tự
+                động hóa, Năng lượng sạch và Tích hợp Trí tuệ nhân tạo.
+            </p>
+        </div>
+    </Section>
+
+    <Section>
+        <!-- Tech Grid Layout -->
+        <div class="tech-grid grid grid-3">
+            {
+                featuredProject && (
+                    <div class="featured-span">
+                        <Card
+                            title={featuredProject.title}
+                            description={featuredProject.description}
+                            category={featuredProject.category}
+                            date={featuredProject.date}
+                            image={featuredProject.image}
+                            href={`/projects/${featuredProject.slug}`}
+                        />
+                    </div>
+                )
+            }
+
+            {
+                otherProjects.map((project) => (
+                    <Card
+                        title={project.title}
+                        description={project.description}
+                        category={project.category}
+                        date={project.date}
+                        image={project.image}
+                        href={`/projects/${project.slug}`}
+                    />
+                ))
+            }
+        </div>
+    </Section>
+</Layout>
+
+<style>
+    .page-header-section {
+        padding-top: var(--spacing-xl);
+    }
+
+    .tech-grid {
+        /* More rigid grid */
+    }
+
+    /* Make featured project span 2 columns on large screens */
+    @media (min-width: 900px) {
+        .featured-span {
+            grid-column: span 2;
+        }
+
+        .featured-span :global(.card-image-wrapper) {
+            aspect-ratio: 21/9; /* Wider cinematic feel for featured */
+        }
+    }
+</style>

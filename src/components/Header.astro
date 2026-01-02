@@ -1,0 +1,201 @@
+---
+const { pathname } = Astro.url;
+const lang = pathname.startsWith("/en") ? "en" : "vn";
+
+const navLinks = [
+    {
+        href: lang === "en" ? "/en" : "/",
+        label: lang === "en" ? "Home" : "Trang Chủ",
+    },
+    {
+        href: lang === "en" ? "/en/about" : "/about",
+        label: lang === "en" ? "About Us" : "Về Chúng Tôi",
+    },
+    {
+        href: lang === "en" ? "/en/services" : "/services",
+        label: lang === "en" ? "Services" : "Dịch Vụ",
+    },
+    {
+        href: lang === "en" ? "/en/projects" : "/projects",
+        label: lang === "en" ? "Projects" : "Dự Án",
+    },
+    {
+        href: lang === "en" ? "/en/contact" : "/contact",
+        label: lang === "en" ? "Contact" : "Liên Hệ",
+    },
+];
+
+function getSwitchLink() {
+    if (lang === "en") {
+        return pathname.replace(/^\/en/, "") || "/";
+    } else {
+        return "/en" + (pathname === "/" ? "" : pathname);
+    }
+}
+
+const switchLink = getSwitchLink();
+const switchLabel = lang === "en" ? "VN" : "EN";
+---
+
+<header class="header">
+    <div class="container header-content">
+        <a href={lang === "en" ? "/en" : "/"} class="logo">IEACE</a>
+        <nav class="nav">
+            <ul class="nav-list">
+                {
+                    navLinks.map((link) => (
+                        <li>
+                            <a
+                                href={link.href}
+                                class:list={[
+                                    "nav-link",
+                                    {
+                                        active:
+                                            pathname === link.href ||
+                                            (link.href !== "/" &&
+                                                link.href !== "/en" &&
+                                                pathname.startsWith(link.href)),
+                                    },
+                                ]}
+                            >
+                                {link.label}
+                            </a>
+                        </li>
+                    ))
+                }
+                <!-- Language Switcher -->
+                <li class="lang-switch-item">
+                    <a href={switchLink} class="nav-link lang-switch">
+                        <span class={lang === "vn" ? "active-lang" : ""}
+                            >VN</span
+                        >
+                        <span class="separator">|</span>
+                        <span class={lang === "en" ? "active-lang" : ""}
+                            >EN</span
+                        >
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <button class="mobile-menu-btn" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+
+<style>
+    .header {
+        height: var(--header-height);
+        background-color: #ffffff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        border-bottom: 1px solid var(--color-border);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .header-content {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo {
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-accent-primary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .nav-list {
+        display: flex;
+        gap: var(--spacing-lg);
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--color-text-muted);
+        position: relative;
+        padding: 0.5rem 0;
+        font-family: var(--font-body);
+        transition: color 0.2s ease;
+    }
+
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--color-accent-primary);
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: var(--color-accent-primary);
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .mobile-menu-btn span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background-color: var(--color-text);
+    }
+
+    @media (max-width: 768px) {
+        .nav {
+            display: none;
+        }
+
+        .mobile-menu-btn {
+            display: flex;
+        }
+    }
+
+    .nav-link.active {
+        color: var(--color-accent-primary);
+    }
+
+    .nav-link.active::after {
+        width: 100%;
+    }
+
+    .lang-switch {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+    }
+
+    .separator {
+        opacity: 0.5;
+        font-size: 0.8em;
+    }
+
+    .active-lang {
+        color: var(--color-accent-primary);
+        font-weight: 700;
+    }
+</style>

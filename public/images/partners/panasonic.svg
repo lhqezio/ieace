@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 60">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-weight: 700; fill: #0040C0; letter-spacing: 1px; }
+  </style>
+  <text x="5" y="42" font-size="40">Panasonic</text>
+</svg>

@@ -1,0 +1,47 @@
+---
+interface Props {
+    className?: string; // Additional classes
+    id?: string;
+    background?: "default" | "secondary" | "accent";
+}
+
+const { className = "", id = "", background = "default" } = Astro.props;
+---
+
+<section id={id} class:list={["section", `bg-${background}`, className]}>
+    <div class="container section-container">
+        <slot />
+    </div>
+</section>
+
+<style>
+    .section {
+        padding: var(--spacing-xl) 0;
+        position: relative;
+        border-bottom: 1px solid transparent; /* Prevent margin collapse visual issues */
+    }
+
+    .bg-default {
+        background-color: var(--color-bg);
+    }
+
+    .bg-secondary {
+        background-color: var(--color-bg-secondary);
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .bg-accent {
+        background-color: var(--color-accent-primary);
+        color: #fff;
+    }
+
+    /* When background is accent, force children to be white/light */
+    .bg-accent :global(h1),
+    .bg-accent :global(h2),
+    .bg-accent :global(h3),
+    .bg-accent :global(p),
+    .bg-accent :global(li) {
+        color: #fff;
+    }
+</style>

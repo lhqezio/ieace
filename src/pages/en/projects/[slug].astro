@@ -1,0 +1,285 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Section from "../../../components/Section.astro";
+
+export function getStaticPaths() {
+  return [
+    {
+      params: { slug: "south-africa-farm-city" },
+      props: {
+        title: "KwaZulu Natal & Northern Cape Farm City",
+        category: "ONGOING",
+        date: "JAN 2026",
+        partner: "An Sinh Nhan Nghia, EEDC, South African Agency",
+        description:
+          "Signing ceremony for the 'Farm City' economic initiative in South Africa. The project integrates high-tech agriculture, renewable energy, and social welfare for local communities.",
+        details: [
+          "Scale: 30,000 ha (N. Cape) & 50,000 ha (KwaZulu Natal)",
+          "Total Investment: €6 Billion (approx. 180,000 Billion VND)",
+          "Focus: Biofuels, Renewable Power, Deep Processing",
+          "Amenities: Staff Housing, Eco-tourism, R&D Center",
+        ],
+        image:
+          "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800",
+      },
+    },
+    {
+      params: { slug: "viettel-solar" },
+      props: {
+        title: "Viettel Solar Power",
+        category: "RENEWABLE ENERGY",
+        partner: "Viettel Group",
+        description:
+          "A comprehensive installation of high-efficiency solar power systems for Viettel's BTS stations. This project focused on optimizing energy consumption for remote telecom infrastructure.",
+        details: [
+          "System Capacity: 3.45KW and 1.5KW",
+          "Location: Various BTS Stations",
+          "Tech Stack: Monocrystalline Panels, Smart Inverters",
+          "Outcome: Reduced diesel dependency by 40%",
+        ],
+        image: "/images/project-solar.jpg",
+      },
+    },
+    {
+      params: { slug: "thanh-hoa-urban" },
+      props: {
+        title: "Thanh Hoa Urban Development",
+        category: "DEVELOPMENT",
+        partner: "TechCo Construction",
+        description:
+          "Integration of renewable energy systems into the master plan for the Thanh Hoa Socio-Economic Comprehensive Development Project.",
+        details: [
+          "Scope: Urban Planning & Tech Integration",
+          "Area: 50 hectares",
+          "Result: Green Building Certification Pending",
+        ],
+        image: "/images/project-urban.jpg",
+      },
+    },
+    {
+      params: { slug: "vocational-training" },
+      props: {
+        title: "Vocational Training Equipment",
+        category: "EDUCATION",
+        partner: "Panasonic / EduTech",
+        description:
+          "Supply and installation of state-of-the-art renewable energy training systems for vocational centers in Lai Chau, Soc Son, and Thai Nguyen.",
+        details: [
+          "Beneficiaries: 500+ Students",
+          "Equipment: Solar Simulators, Wind Turbines",
+          "Impact: Enhanced practical skills curriculum",
+        ],
+        image: "/images/project-training.jpg",
+      },
+    },
+    {
+      params: { slug: "hust-research" },
+      props: {
+        title: "HUST Research Collaboration",
+        category: "RESEARCH",
+        partner: "Hanoi University of Science & Technology",
+        description:
+          "Joint research initiative focusing on the application of Artificial Intelligence in optimizing grid distribution and energy storage.",
+        details: [
+          "Focus: AI & Energy Optimization",
+          "Status: Ongoing",
+          "Publications: 2 Conference Papers",
+        ],
+      },
+    },
+    {
+      params: { slug: "maritime-college" },
+      props: {
+        title: "Maritime College I Upgrade",
+        category: "EDUCATION",
+        partner: "Mitsubishi Electric",
+        description:
+          "Modernization of electrical and marine equipment laboratories to meet international maritime safety standards.",
+        details: [
+          "Upgrade: PLC Systems, Automation Controls",
+          "Standard: IMO Compliance",
+        ],
+      },
+    },
+    {
+      params: { slug: "viettel-cambodia" },
+      props: {
+        title: "Viettel Cambodia",
+        category: "CONSULTING",
+        partner: "Viettel Global",
+        description:
+          "Consulting and design services for off-grid hybrid solar solutions for remote telecom towers in Cambodia.",
+        details: [
+          "Region: Rural Cambodia",
+          "Solution: Hybrid Solar-Diesel",
+          "Efficiency: 99.9% Uptime",
+        ],
+      },
+    },
+  ];
+}
+
+const { title, category, date, partner, description, details, image } =
+  Astro.props;
+---
+
+<Layout title={`${title} | Project Spec`}>
+  <Section className="project-header">
+    <div class="breadcrumb">
+      <a href="/en/projects">&larr; Return to Project Index</a> / <span
+        class="active">{title}</span
+      >
+    </div>
+
+    <h1 class="project-title">{title}</h1>
+
+    <div class="project-meta">
+      {
+        date && (
+          <div class="meta-item">
+            <span class="label">TIMELINE</span> {date}
+          </div>
+        )
+      }
+      <div class="meta-item">
+        <span class="label">SECTOR</span>
+        {category}
+      </div>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="project-grid">
+      <div class="project-content">
+        <div class="spec-card">
+          <h3 class="spec-title">Project Overview</h3>
+          <p class="spec-text">{description}</p>
+        </div>
+
+        <div class="spec-card">
+          <h3 class="spec-title">Specifications & Scale</h3>
+          <ul class="spec-list">
+            {details.map((detail) => <li>{detail}</li>)}
+          </ul>
+        </div>
+      </div>
+
+      {
+        image && (
+          <div class="project-image">
+            <div class="img-frame">
+              <img src={image} alt={title} />
+            </div>
+            <div class="img-caption">Field Implementation Records</div>
+          </div>
+        )
+      }
+    </div>
+  </Section>
+</Layout>
+
+<style>
+  .project-header {
+    padding-top: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-accent-primary);
+  }
+
+  .project-title {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .project-meta {
+    display: flex;
+    gap: var(--spacing-xl);
+    border-top: 1px solid var(--color-border);
+    padding: var(--spacing-md) 0;
+    font-size: 0.9rem;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .label {
+    color: var(--color-text-muted);
+    font-size: 0.7rem;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  @media (min-width: 900px) {
+    .project-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .spec-card {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .spec-title {
+    font-size: 1rem;
+    color: var(--color-accent-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .spec-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .spec-list li {
+    margin-bottom: var(--spacing-sm);
+    font-size: 1rem;
+    position: relative;
+    padding-left: 1.5rem;
+    color: var(--color-text-muted);
+  }
+
+  .spec-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent-primary);
+    font-weight: bold;
+  }
+
+  .bullet {
+    color: var(--color-accent-primary);
+    margin-right: 8px;
+  }
+
+  .img-frame {
+    border: 1px solid var(--color-border);
+    padding: 8px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .img-caption {
+    margin-top: var(--spacing-sm);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-align: right;
+  }
+</style>

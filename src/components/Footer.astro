@@ -1,0 +1,276 @@
+---
+const { pathname } = Astro.url;
+const lang = pathname.startsWith("/en") ? "en" : "vn";
+const currentYear = new Date().getFullYear();
+
+const labels = {
+    vn: {
+        quickLinks: "Liên Kết Nhanh",
+        contact: "Liên Hệ",
+        aboutUs: "Về Chúng Tôi",
+        services: "Dịch Vụ",
+        projects: "Dự Án",
+        contactPage: "Liên Hệ",
+        phone: "Điện thoại",
+        email: "Email",
+        tagline: "Viện Điện Tử Tự Động Hóa Năng Lượng Sạch.",
+        tagline2: "Kết nối nghiên cứu khoa học và ứng dụng thực tế.",
+        rights: "Bản quyền thuộc về IEACE.",
+    },
+    en: {
+        quickLinks: "Quick Links",
+        contact: "Contact Us",
+        aboutUs: "About Us",
+        services: "Services",
+        projects: "Projects",
+        contactPage: "Contact",
+        phone: "Phone",
+        email: "Email",
+        tagline: "Institute of Automation and Clean Energy.",
+        tagline2: "Bridging scientific research and real-world application.",
+        rights: "All rights reserved.",
+    },
+};
+
+const t = labels[lang];
+const prefix = lang === "en" ? "/en" : "";
+---
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Brand & Mission -->
+            <div class="footer-column footer-brand">
+                <a href={prefix + "/"} class="footer-logo">IEACE</a>
+                <p class="footer-desc">
+                    {t.tagline}<br />
+                    {t.tagline2}
+                </p>
+                <div class="footer-meta">
+                    <p class="meta-item">
+                        Giấy phép hoạt động: <strong>A-1128</strong>
+                    </p>
+                    <p class="meta-item">
+                        Năm thành lập: <strong>2013</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="footer-column">
+                <h4 class="footer-heading">{t.quickLinks}</h4>
+                <ul class="footer-nav">
+                    <li><a href={prefix + "/about"}>{t.aboutUs}</a></li>
+                    <li><a href={prefix + "/services"}>{t.services}</a></li>
+                    <li><a href={prefix + "/projects"}>{t.projects}</a></li>
+                    <li><a href={prefix + "/contact"}>{t.contactPage}</a></li>
+                </ul>
+            </div>
+
+            <!-- Industry Focus -->
+            <div class="footer-column">
+                <h4 class="footer-heading">
+                    {lang === "en" ? "Industry Reach" : "Phạm Vi Ngành"}
+                </h4>
+                <ul class="footer-nav">
+                    <li><span>Automation & AI</span></li>
+                    <li><span>Renewable Energy</span></li>
+                    <li><span>Smart Urban Dev</span></li>
+                    <li><span>Tech Transfer</span></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="footer-column">
+                <h4 class="footer-heading">{t.contact}</h4>
+                <div class="contact-details">
+                    <div class="detail-item">
+                        <p>
+                            <strong>Trụ sở:</strong> Hamlet 2, Van Phuc Commune, Thanh
+                            Tri, Hanoi
+                        </p>
+                    </div>
+                    <div class="detail-item">
+                        <p><strong>Điện thoại:</strong> 043.6342875</p>
+                    </div>
+                    <div class="detail-item">
+                        <p><strong>Email:</strong> lehongnam@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-divider"></div>
+            <div class="footer-copyright">
+                <p>&copy; {currentYear} IEACE. {t.rights}</p>
+                <p class="affiliation">Trực thuộc LHH Việt Nam</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        background: var(--color-surface);
+        border-top: 1px solid var(--color-border);
+        padding: var(--spacing-xl) 0 var(--spacing-lg);
+        color: var(--color-text);
+        position: relative;
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1.5fr;
+        gap: var(--spacing-xl);
+    }
+
+    @media (max-width: 992px) {
+        .footer-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .footer-logo {
+        font-family: var(--font-heading);
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--color-accent-primary);
+        margin-bottom: var(--spacing-md);
+        display: block;
+        letter-spacing: -0.02em;
+    }
+
+    .footer-desc {
+        color: var(--color-text-muted);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: var(--spacing-lg);
+        max-width: 300px;
+    }
+
+    .footer-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .meta-item {
+        font-size: 0.8rem;
+        color: var(--color-text-muted);
+        margin: 0;
+    }
+
+    .footer-heading {
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--color-text);
+        margin-bottom: var(--spacing-lg);
+        letter-spacing: 0.05em;
+        position: relative;
+        display: inline-block;
+    }
+
+    .footer-heading::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 30px;
+        height: 2px;
+        background: var(--color-accent-primary);
+    }
+
+    .footer-nav {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .footer-nav a,
+    .footer-nav span {
+        font-size: 0.9rem;
+        color: var(--color-text-muted);
+        transition: all 0.3s ease;
+    }
+
+    .footer-nav a:hover {
+        color: var(--color-accent-primary);
+        padding-left: 4px;
+    }
+
+    .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .detail-item {
+        display: flex;
+        gap: var(--spacing-md);
+        align-items: flex-start;
+    }
+
+    .detail-icon {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        color: var(--color-accent-primary);
+        background: rgba(0, 230, 118, 0.1);
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 2px;
+        flex-shrink: 0;
+    }
+
+    .detail-item p {
+        font-size: 0.9rem;
+        color: var(--color-text-muted);
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    .footer-bottom {
+        margin-top: var(--spacing-xl);
+    }
+
+    .footer-divider {
+        height: 1px;
+        background: var(--color-border);
+        margin-bottom: var(--spacing-lg);
+        opacity: 0.5;
+    }
+
+    .footer-copyright {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--spacing-md);
+    }
+
+    .footer-copyright p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: var(--color-text-muted);
+    }
+
+    .mono-disclaimer {
+        font-family: var(--font-mono);
+        font-size: 0.7rem !important;
+        letter-spacing: 0.05em;
+        color: var(--color-accent-primary) !important;
+        opacity: 0.6;
+    }
+</style>

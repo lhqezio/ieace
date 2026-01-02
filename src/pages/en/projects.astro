@@ -1,0 +1,134 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/Section.astro";
+import Card from "../../components/Card.astro";
+
+const projects = [
+    {
+        title: "KwaZulu Natal & Northern Cape Farm City",
+        description:
+            "€6 Billion Mega-project in South Africa implementing the 'Farm City' initiative for high-tech agriculture and renewable energy.",
+        category: "ONGOING",
+        date: "JAN 2026",
+        image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800",
+        slug: "south-africa-farm-city",
+        featured: true,
+    },
+    {
+        title: "Viettel Solar Power",
+        description:
+            "Installation of 3.45KW and 1.5KW solar power systems for BTS stations. Optimizing renewable integration for telecom.",
+        category: "RENEWABLE ENERGY",
+        image: "/images/project-solar.jpg",
+        slug: "viettel-solar",
+    },
+    {
+        title: "Thanh Hoa Urban Development",
+        description:
+            "Renewable energy system development for Socio-Economic Comprehensive Development Project.",
+        category: "DEVELOPMENT",
+        image: "/images/project-urban.jpg",
+        slug: "thanh-hoa-urban",
+    },
+    {
+        title: "Vocational Training Equipment",
+        description:
+            "Supply of renewable energy systems for Lai Chau, Soc Son, and Thai Nguyen centers.",
+        category: "EDUCATION",
+        image: "/images/project-training.jpg",
+        slug: "vocational-training",
+    },
+    {
+        title: "HUST Research Collaboration",
+        description:
+            "Joint research on AI application in energy technology with Hanoi University of Science and Technology.",
+        category: "RESEARCH",
+        slug: "hust-research",
+    },
+    {
+        title: "Maritime College I Upgrade",
+        description:
+            "Modernizing electrical and marine equipment laboratories to meet international standards.",
+        category: "EDUCATION",
+        slug: "maritime-college",
+    },
+    {
+        title: "Viettel Cambodia",
+        description:
+            "Cross-border consulting and design for off-grid solar solutions.",
+        category: "CONSULTING",
+        slug: "viettel-cambodia",
+    },
+];
+
+const featuredProject = projects.find((p) => p.featured);
+const otherProjects = projects.filter((p) => !p.featured);
+---
+
+<Layout title="Projects Protocol">
+    <Section className="page-header-section">
+        <div class="page-header">
+            <h1 class="page-title">
+                Research & <span class="text-accent">Development</span>
+            </h1>
+            <p class="page-intro">
+                A comprehensive portfolio of key technological initiatives in
+                Automation, Clean Energy, and AI Integration.
+            </p>
+        </div>
+    </Section>
+
+    <Section>
+        <!-- Tech Grid Layout -->
+        <div class="tech-grid grid grid-3">
+            {
+                featuredProject && (
+                    <div class="featured-span">
+                        <Card
+                            title={featuredProject.title}
+                            description={featuredProject.description}
+                            category={featuredProject.category}
+                            date={featuredProject.date}
+                            image={featuredProject.image}
+                            href={`/en/projects/${featuredProject.slug}`}
+                        />
+                    </div>
+                )
+            }
+
+            {
+                otherProjects.map((project) => (
+                    <Card
+                        title={project.title}
+                        description={project.description}
+                        category={project.category}
+                        date={project.date}
+                        image={project.image}
+                        href={`/en/projects/${project.slug}`}
+                    />
+                ))
+            }
+        </div>
+    </Section>
+</Layout>
+
+<style>
+    .page-header-section {
+        padding-top: var(--spacing-xl);
+    }
+
+    .tech-grid {
+        /* More rigid grid */
+    }
+
+    /* Make featured project span 2 columns on large screens */
+    @media (min-width: 900px) {
+        .featured-span {
+            grid-column: span 2;
+        }
+
+        .featured-span :global(.card-image-wrapper) {
+            aspect-ratio: 21/9; /* Wider cinematic feel for featured */
+        }
+    }
+</style>
