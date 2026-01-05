@@ -1,0 +1,90 @@
+---
+interface Props {
+    name: string;
+    role: string;
+    bio: string;
+    image?: string;
+}
+
+const { name, role, bio, image } = Astro.props;
+---
+
+<div class="leadership-card">
+    <div class="leader-img">
+        {
+            image ? (
+                <img src={image} alt={name} />
+            ) : (
+                <div class="placeholder-face" />
+            )
+        }
+    </div>
+    <div class="leader-info">
+        <h3 class="leader-name">{name}</h3>
+        <span class="leader-role">{role}</span>
+        <p class="leader-bio">{bio}</p>
+    </div>
+</div>
+
+<style>
+    .leadership-card {
+        border: 1px solid var(--color-border);
+        background: white;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .leader-img {
+        width: 100%;
+        background: #e0e0e0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .leader-img img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+
+    .placeholder-face {
+        width: 100%;
+        aspect-ratio: 1/1;
+        background: linear-gradient(
+            45deg,
+            #eee 25%,
+            #f5f5f5 25%,
+            #f5f5f5 50%,
+            #eee 50%,
+            #eee 75%,
+            #f5f5f5 75%,
+            #f5f5f5 100%
+        );
+        background-size: 20px 20px;
+    }
+
+    .leader-info {
+        padding: var(--spacing-md);
+    }
+
+    .leader-name {
+        font-size: 1.2rem;
+        margin-bottom: 4px;
+        font-weight: 700;
+    }
+
+    .leader-role {
+        font-size: 0.7rem;
+        color: var(--color-accent-primary);
+        display: block;
+        margin-bottom: var(--spacing-md);
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .leader-bio {
+        font-size: 0.9rem;
+        color: var(--color-text-muted);
+        line-height: 1.5;
+    }
+</style>

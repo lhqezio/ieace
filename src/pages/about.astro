@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
+import LeaderCard from "../components/LeaderCard.astro";
 ---
 
 <Layout title="Hồ Sơ Viện | IEACE">
@@ -81,20 +82,17 @@ import Section from "../components/Section.astro";
 					<p class="seal-text">HOẠT ĐỘNG ĐƯỢC PHÊ DUYỆT</p>
 				</div>
 
-				<div class="leadership-card">
-					<div class="leader-img">
-						<!-- Placeholder for Director -->
-						<div class="placeholder-face"></div>
-					</div>
-					<div class="leader-info">
-						<h3 class="leader-name">TS. Lê Hồng Nam</h3>
-						<span class="leader-role">VIỆN TRƯỞNG</span>
-						<p class="leader-bio">
-							Dẫn đầu nỗ lực quốc gia về tối ưu hóa năng lượng dựa
-							trên AI và hạ tầng lưới điện thông minh.
-						</p>
-					</div>
-				</div>
+				<LeaderCard
+					name="TS. Lê Hồng Nam"
+					role="VIỆN TRƯỞNG & CHỦ TỊCH HĐQL"
+					bio="Dẫn đầu nỗ lực quốc gia về tối ưu hóa năng lượng dựa trên AI và hạ tầng lưới điện thông minh."
+				/>
+
+				<LeaderCard
+					name="PGS. TS. Trần Trọng Minh"
+					role="CHỦ TỊCH HỘI ĐỒNG KHOA HỌC"
+					bio="Định hướng chiến lược nghiên cứu khoa học và phát triển công nghệ chuyên sâu."
+				/>
 			</div>
 		</div>
 	</Section>

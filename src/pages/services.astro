@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
+import ServiceCardLg from "../components/ServiceCardLg.astro";
 ---
 
 <Layout title="Dịch Vụ & Nghiên Cứu">
@@ -18,93 +18,35 @@ import Card from "../components/Card.astro";
 		</div>
 	</Section>
 
-	<Section background="secondary">
-		<div class="service-block">
-			<div class="service-text">
-				<h2 class="section-heading">Nghiên cứu khoa học</h2>
-				<div class="service-item">
-					<h3>Năng Lượng Tái Tạo</h3>
-					<p>
-						Nghiên cứu cấp cao và triển khai các hệ thống năng lượng
-						Mặt trời, Gió, Thủy điện và Thủy triều. Chúng tôi tập
-						trung tối ưu hóa hiệu suất và hòa lưới điện quốc gia.
-					</p>
-				</div>
-				<div class="service-item">
-					<h3>Tự Động Hóa & AI</h3>
-					<p>Phát triển các thuật toán thông minh cho:</p>
-					<ul class="feature-list">
-						<li>Tối ưu hóa tiêu thụ năng lượng và cân bằng tải.</li>
-						<li>
-							Bảo trì dự đoán cho hệ thống điện để giảm thiểu thời
-							gian dừng máy.
-						</li>
-						<li>
-							Tự động hóa thông minh các quy trình công nghiệp và
-							hệ thống điều khiển.
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="service-image">
-				<img
-					src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=800"
-					alt="Năng lượng mặt trời"
-				/>
-			</div>
-		</div>
-	</Section>
-
 	<Section>
-		<h2
-			class="section-heading"
-			style="text-align: center; margin-bottom: var(--spacing-xl);"
-		>
-			Chuyển giao công nghệ & Dịch vụ công nghiệp
-		</h2>
-		<div class="grid grid-3">
-			<Card
-				title="Thử Nghiệm Công Nghiệp"
-				description="Kiểm tra sản xuất nghiêm ngặt cho các hệ thống công nghiệp, thiết bị cơ điện tử và điều khiển quy trình."
+		<div class="services-grid">
+			<ServiceCardLg
+				title="Năng Lượng Xanh & Tái Tạo"
+				description="Kết nối Nghiên cứu Khoa học và ứng dụng thực tiễn. Tư vấn thiết kế các dự án cụm năng lượng tái tạo độc lập từ Gió, Mặt trời, Biogas... Cung cấp điện cho các cụm dân cư độc lập và trạm sạc pin."
+				image="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=800"
+				alt="Năng lượng tái tạo"
 			/>
-			<Card
-				title="Chuyển Giao Công Nghệ"
-				description="Kết nối khoảng cách bằng cách đưa các kết quả nghiên cứu khoa học vào môi trường sản xuất và vận hành thực tế."
-			/>
-			<Card
-				title="Đào Tạo Chuyên Nghiệp"
-				description="Tổ chức các hội thảo khoa học, hội thảo chuyên đề và các chương trình đào tạo công nghệ tiên tiến."
-			/>
-		</div>
-	</Section>
 
-	<Section background="secondary">
-		<div class="service-block reverse">
-			<div class="service-text">
-				<h2 class="section-heading">Tư vấn & Thiết kế</h2>
-				<div class="service-item">
-					<h3>Thiết Kế & Xây Dựng</h3>
-					<p>
-						Thiết kế và xây dựng chuyên nghiệp các hệ thống kỹ thuật
-						cho các công trình dân dụng, tòa nhà văn phòng cao cấp
-						và nhà máy công nghiệp hiện đại.
-					</p>
-				</div>
-				<div class="service-item">
-					<h3>Tư Vấn Tích Hợp AI</h3>
-					<p>
-						Tư vấn chiến lược về việc tích hợp AI và công nghệ tự
-						động hóa vào hạ tầng hiện có để nâng cao hiệu quả và
-						tính bền vững.
-					</p>
-				</div>
-			</div>
-			<div class="service-image">
-				<img
-					src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800"
-					alt="Tư vấn kiến trúc hiện đại"
-				/>
-			</div>
+			<ServiceCardLg
+				title="Tự Động Hóa & IoT/AI"
+				description="Tư vấn thiết kế các hệ thống, dây chuyền sản xuất tự động hóa. Ứng dụng IoT và Trí tuệ nhân tạo (AI) vào nông nghiệp công nghệ cao, tối ưu hóa quy trình sản xuất công-nông-lâm-ngư nghiệp."
+				image="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800"
+				alt="Tự động hóa"
+			/>
+
+			<ServiceCardLg
+				title="Môi Trường & Biến Đổi Khí Hậu"
+				description="Tư vấn giải pháp xử lý môi trường, kinh tế tuần hoàn. Ứng dụng Công nghệ số trong điều tiết xả lũ, thoát lũ cho các công trình thủy lợi, thủy điện nhằm ứng phó biến đổi khí hậu."
+				image="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800"
+				alt="Xử lý môi trường"
+			/>
+
+			<ServiceCardLg
+				title="Giao Thông Xanh & Máy Cách Tân"
+				description="Tư vấn, thiết kế hệ thống cấp năng lượng cho trạm sạc xe điện. Chuyển đổi máy canh tác nông nghiệp từ sử dụng xăng dầu sang động cơ điện, kiến tạo nền nông nghiệp xanh."
+				image="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800"
+				alt="Trạm sạc điện"
+			/>
 		</div>
 	</Section>
 </Layout>
@@ -128,105 +70,15 @@ import Card from "../components/Card.astro";
 		line-height: 1.6;
 	}
 
-	.section-heading {
-		font-size: 0.85rem;
-		text-transform: uppercase;
-		color: var(--color-accent-primary);
-		letter-spacing: 0.1em;
-		margin-bottom: var(--spacing-lg);
-		display: block;
-		font-weight: 700;
-	}
-
-	.service-block {
+	.services-grid {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr;
 		gap: var(--spacing-xl);
-		align-items: center;
 	}
 
-	.service-block.reverse {
-		direction: rtl;
-	}
-
-	.service-block.reverse > * {
-		direction: ltr;
-	}
-
-	@media (max-width: 900px) {
-		.service-block {
-			grid-template-columns: 1fr;
+	@media (min-width: 768px) {
+		.services-grid {
+			grid-template-columns: repeat(2, 1fr);
 		}
-		.service-block.reverse {
-			direction: ltr;
-		}
-	}
-
-	.service-item {
-		margin-bottom: var(--spacing-xl);
-	}
-
-	.service-item h3 {
-		font-size: 1.8rem;
-		margin-bottom: var(--spacing-sm);
-		color: var(--color-text);
-		position: relative;
-		display: inline-block;
-	}
-
-	.service-item h3::after {
-		content: "";
-		position: absolute;
-		bottom: -4px;
-		left: 0;
-		width: 40px;
-		height: 3px;
-		background: var(--color-accent-primary);
-	}
-
-	.service-item p {
-		color: var(--color-text-muted);
-		font-size: 1.1rem;
-		line-height: 1.6;
-	}
-
-	.feature-list {
-		list-style: none;
-		padding: 0;
-		margin-top: var(--spacing-md);
-	}
-
-	.feature-list li {
-		position: relative;
-		padding-left: 1.5rem;
-		margin-bottom: 0.8rem;
-		color: var(--color-text-muted);
-	}
-
-	.feature-list li::before {
-		content: "→";
-		position: absolute;
-		left: 0;
-		color: var(--color-accent-primary);
-		font-family: var(--font-mono);
-	}
-
-	.service-image {
-		border-radius: 8px;
-		overflow: hidden;
-		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-		border: 1px solid var(--color-border);
-	}
-
-	.service-image img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		display: block;
-		transition: transform 0.5s ease;
-	}
-
-	.service-image:hover img {
-		transform: scale(1.05);
 	}
 </style>

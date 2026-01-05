@@ -1,39 +1,66 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
 
-const posts = (await getCollection('posts')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+const posts = (await getCollection("posts")).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
 <Layout title="Newsroom">
 	<article class="container">
 		<h1>Newsroom</h1>
-		
+
 		<div class="filters">
 			<button class="filter-btn active" data-tag="all">All</button>
 			<button class="filter-btn" data-tag="general">General</button>
-			<button class="filter-btn" data-tag="case-study">Case Studies</button>
+			<button class="filter-btn" data-tag="case-study"
+				>Case Studies</button
+			>
 			<button class="filter-btn" data-tag="research">Research</button>
 		</div>
 
 		<div class="posts-grid">
-			{posts.map((post) => (
-				<article class="post-card" data-tag={post.data.tag}>
-					<div class="post-meta">
-						<time datetime={post.data.pubDate.toISOString()}>
-							{post.data.pubDate.toISOString().split('T')[0].replace(/-/g, '.')}
-						</time>
-						<span class="tag">{post.data.tag}</span>
+			{
+				posts.length > 0 ? (
+					posts.map((post) => (
+						<article class="post-card" data-tag={post.data.tag}>
+							<div class="post-meta">
+								<time
+									datetime={post.data.pubDate.toISOString()}
+								>
+									{post.data.pubDate
+										.toISOString()
+										.split("T")[0]
+										.replace(/-/g, ".")}
+								</time>
+								<span class="tag">{post.data.tag}</span>
+							</div>
+							<div class="post-content">
+								<h2>
+									<a href={`/posts/${post.slug}`}>
+										{post.data.title}
+									</a>
+								</h2>
+								<p>{post.data.description}</p>
+								<a
+									href={`/posts/${post.slug}`}
+									class="read-link"
+								>
+									&rarr; read
+								</a>
+							</div>
+						</article>
+					))
+				) : (
+					<div class="empty-state">
+						<p>
+							Bản tin nghiên cứu và phát triển đang được cập
+							nhật...
+						</p>
 					</div>
-					<div class="post-content">
-						<h2><a href={`/posts/${post.slug}`}>{post.data.title}</a></h2>
-						<p>{post.data.description}</p>
-						<a href={`/posts/${post.slug}`} class="read-link">&rarr; read</a>
-					</div>
-				</article>
-			))}
+				)
+			}
 		</div>
 	</article>
 </Layout>
@@ -143,53 +170,53 @@ const posts = (await getCollection('posts')).sort(
 </style>
 
 <script>
-	const filterBtns = document.querySelectorAll('.filter-btn');
-	const postCards = document.querySelectorAll('.post-card');
+	const filterBtns = document.querySelectorAll(".filter-btn");
+	const postCards = document.querySelectorAll(".post-card");
 
 	// Handle URL parameters
 	const urlParams = new URLSearchParams(window.location.search);
-	const initialTag = urlParams.get('tag') || 'all';
+	const initialTag = urlParams.get("tag") || "all";
 
 	// Set initial filter
-	filterBtns.forEach(btn => {
+	filterBtns.forEach((btn) => {
 		if (btn.dataset.tag === initialTag) {
-			btn.classList.add('active');
+			btn.classList.add("active");
 		} else {
-			btn.classList.remove('active');
+			btn.classList.remove("active");
 		}
 	});
 
 	// Apply initial filter
 	filterPosts(initialTag);
 
-	filterBtns.forEach(btn => {
-		btn.addEventListener('click', () => {
+	filterBtns.forEach((btn) => {
+		btn.addEventListener("click", () => {
 			const tag = btn.dataset.tag;
-			
+
 			// Update active state
-			filterBtns.forEach(b => b.classList.remove('active'));
-			btn.classList.add('active');
-			
+			filterBtns.forEach((b) => b.classList.remove("active"));
+			btn.classList.add("active");
+
 			// Filter posts
 			filterPosts(tag);
-			
+
 			// Update URL
 			const url = new URL(window.location.href);
-			if (tag === 'all') {
-				url.searchParams.delete('tag');
+			if (tag === "all") {
+				url.searchParams.delete("tag");
 			} else {
-				url.searchParams.set('tag', tag);
+				url.searchParams.set("tag", tag);
 			}
-			window.history.pushState({}, '', url);
+			window.history.pushState({}, "", url);
 		});
 	});
 
 	function filterPosts(tag) {
-		postCards.forEach(card => {
-			if (tag === 'all' || card.dataset.tag === tag) {
-				card.style.display = 'grid';
+		postCards.forEach((card) => {
+			if (tag === "all" || card.dataset.tag === tag) {
+				card.style.display = "grid";
 			} else {
-				card.style.display = 'none';
+				card.style.display = "none";
 			}
 		});
 	}

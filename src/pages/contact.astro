@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
+import ContactCard from "../components/ContactCard.astro";
 ---
 
 <Layout title="Liên hệ">
@@ -18,43 +19,39 @@ import Section from "../components/Section.astro";
     <Section background="secondary" className="contact-info-section">
         <div class="contact-grid simplified">
             <div class="contact-main">
-                <div class="contact-card">
-                    <div class="contact-header">
-                        <h2 class="section-heading">TRỤ SỞ CHÍNH</h2>
-                        <div class="institutional-line"></div>
-                    </div>
-                    <div class="info-group">
-                        <div class="info-item">
-                            <h4 class="info-label">Địa chỉ trụ sở</h4>
-                            <p>
-                                Thôn 2, Xã Vạn Phúc, Huyện Thanh Trì, TP. Hà Nội
-                            </p>
-                        </div>
-                        <div class="info-item">
-                            <h4 class="info-label">Văn phòng giao dịch</h4>
-                            <p>
-                                Phòng 401, Số 1 Đỗ Hành, Quận Hai Bà Trưng, TP.
-                                Hà Nội
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <ContactCard
+                    title="TRỤ SỞ CHÍNH"
+                    items={[
+                        {
+                            label: "Địa chỉ trụ sở",
+                            content:
+                                "53 Nguyễn Du, Q. Hai Bà Trưng, TP. Hà Nội",
+                        },
+                        {
+                            label: "Văn phòng giao dịch",
+                            content:
+                                "CTI 1.1 A Vĩnh Hoàng, Vĩnh Hưng, Hoàng Mai, Hà Nội",
+                        },
+                    ]}
+                />
 
                 <div class="sidebar-card">
                     <h4 class="sidebar-title">KÊNH TRỰC TUYẾN</h4>
                     <ul class="contact-links">
                         <li>
                             <span class="link-label">Điện thoại:</span>
-                            <a href="tel:0436342875">043.6342875</a>
-                        </li>
-                        <li>
-                            <span class="link-label">Số Fax:</span>
-                            043.6340503
+                            <a href="tel:0985762625">0985.762.625</a>
                         </li>
                         <li>
                             <span class="link-label">Email:</span>
-                            <a href="mailto:lehongnam@gmail.com"
-                                >lehongnam@gmail.com</a
+                            <a href="mailto:ieace.2018@gmail.com"
+                                >ieace.2018@gmail.com</a
+                            >
+                        </li>
+                        <li>
+                            <span class="link-label">Email:</span>
+                            <a href="mailto:cevtcevt@gmail.com"
+                                >cevtcevt@gmail.com</a
                             >
                         </li>
                     </ul>
@@ -67,23 +64,13 @@ import Section from "../components/Section.astro";
                 </div>
             </div>
 
-            <div class="contact-sidebar">
-                <div class="map-visual">
-                    <div class="map-placeholder">
-                        <div class="map-dot"></div>
-                        <div class="map-label">IEACE HANOI</div>
+            <div class="institutional-badge">
+                <div class="badge-content">
+                    <div class="badge-logo">IEACE</div>
+                    <div class="badge-tag">
+                        Viện Điện Tử Tự Động Hóa Năng Lượng Sạch
                     </div>
-                    <p class="map-caption">Khu vực TP. Hà Nội, Việt Nam</p>
-                </div>
-
-                <div class="institutional-badge">
-                    <div class="badge-content">
-                        <div class="badge-logo">IEACE</div>
-                        <div class="badge-tag">
-                            Viện Điện Tử Tự Động Hóa Năng Lượng Sạch
-                        </div>
-                        <p class="badge-affiliation">Trực thuộc LHH Việt Nam</p>
-                    </div>
+                    <p class="badge-affiliation">Trực thuộc LHH Việt Nam</p>
                 </div>
             </div>
         </div>

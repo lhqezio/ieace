@@ -1,0 +1,146 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    partners: {
+        name: string;
+        url: string;
+        logo?: string;
+    }[];
+    vl8Name?: string;
+    vl8Url?: string;
+}
+
+const {
+    title,
+    description,
+    partners,
+    vl8Name = "vl8.ai",
+    vl8Url = "https://vl8.ai",
+} = Astro.props;
+---
+
+<section class="research-section">
+    <div class="row text-center mb-lg">
+        <h2 class="section-title" set:html={title} />
+        <p class="section-desc" style="max-width: 600px; margin: 0 auto;">
+            {description}
+        </p>
+    </div>
+    <div class="partners-grid research-partners">
+        {
+            partners.map((partner) => (
+                <a
+                    href={partner.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="research-link"
+                >
+                    <div
+                        class={`research-logo-img ${partner.name.toLowerCase().includes("cec") ? "large-logo" : ""}`}
+                    >
+                        <img src={partner.logo} alt={partner.name} />
+                    </div>
+                </a>
+            ))
+        }
+        <!-- vl8.ai text logo -->
+        <a
+            href={vl8Url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="research-link"
+        >
+            <div class="research-logo vl8-logo"><span>{vl8Name}</span></div>
+        </a>
+    </div>
+</section>
+
+<style>
+    .research-section {
+        padding: var(--spacing-xl) 0;
+    }
+    .text-center {
+        text-align: center;
+    }
+    .mb-lg {
+        margin-bottom: var(--spacing-lg);
+    }
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: var(--spacing-md);
+    }
+    .section-desc {
+        font-size: 1.1rem;
+        color: var(--color-text-muted);
+        line-height: 1.6;
+    }
+    .partners-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacing-xl);
+        align-items: center;
+    }
+    .research-logo-img {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        padding: 5px;
+    }
+    .research-logo-img img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        filter: grayscale(100%);
+        opacity: 0.7;
+        transition: all 0.3s ease;
+    }
+    .research-logo-img.large-logo img {
+        transform: scale(2.7);
+        filter: grayscale(100%);
+        opacity: 0.7;
+    }
+    .research-logo-img:hover img {
+        filter: none;
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    .research-logo-img.large-logo:hover img {
+        transform: scale(3);
+        filter: none;
+        opacity: 1;
+    }
+    .research-logo {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: var(--color-surface);
+        border: 2px solid var(--color-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: var(--color-accent-primary);
+        text-align: center;
+        padding: 5px;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+    .research-logo:hover {
+        border-color: var(--color-accent-primary);
+        transform: scale(1.1);
+        background: white;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .vl8-logo span {
+        font-family: "JetBrains Mono", monospace;
+        font-weight: 700;
+        letter-spacing: -0.05em;
+        font-size: 1.1rem;
+        color: #000;
+    }
+</style>

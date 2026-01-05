@@ -16,6 +16,9 @@ const labels = {
         tagline: "Viện Điện Tử Tự Động Hóa Năng Lượng Sạch.",
         tagline2: "Kết nối nghiên cứu khoa học và ứng dụng thực tế.",
         rights: "Bản quyền thuộc về IEACE.",
+        license: "Giấy phép hoạt động",
+        founded: "Năm thành lập",
+        affiliation: "Trực thuộc LHH Việt Nam",
     },
     en: {
         quickLinks: "Quick Links",
@@ -29,6 +32,9 @@ const labels = {
         tagline: "Institute of Automation and Clean Energy.",
         tagline2: "Bridging scientific research and real-world application.",
         rights: "All rights reserved.",
+        license: "Operating License",
+        founded: "Established",
+        affiliation: "Member of VUSTA",
     },
 };
 
@@ -48,10 +54,10 @@ const prefix = lang === "en" ? "/en" : "";
                 </p>
                 <div class="footer-meta">
                     <p class="meta-item">
-                        Giấy phép hoạt động: <strong>A-1128</strong>
+                        {t.license}: <strong>A-1128</strong>
                     </p>
                     <p class="meta-item">
-                        Năm thành lập: <strong>2013</strong>
+                        {t.founded}: <strong>2013</strong>
                     </p>
                 </div>
             </div>
@@ -86,15 +92,29 @@ const prefix = lang === "en" ? "/en" : "";
                 <div class="contact-details">
                     <div class="detail-item">
                         <p>
-                            <strong>Trụ sở:</strong> Hamlet 2, Van Phuc Commune, Thanh
-                            Tri, Hanoi
+                            <strong
+                                >{lang === "en" ? "Address" : "Trụ sở"}:</strong
+                            > 53 Nguyễn Du, Q. Hai Bà Trưng, TP. Hà Nội
                         </p>
                     </div>
                     <div class="detail-item">
-                        <p><strong>Điện thoại:</strong> 043.6342875</p>
+                        <p>
+                            <strong>{t.phone}:</strong>
+                            <a href="tel:0985762625">0985.762.625</a>
+                        </p>
                     </div>
                     <div class="detail-item">
-                        <p><strong>Email:</strong> lehongnam@gmail.com</p>
+                        <p>
+                            <strong>Email:</strong>
+                            <a href="mailto:ieace.2018@gmail.com"
+                                >ieace.2018@gmail.com</a
+                            >
+                        </p>
+                        <p style="margin-left: 55px;">
+                            <a href="mailto:cevtcevt@gmail.com"
+                                >cevtcevt@gmail.com</a
+                            >
+                        </p>
                     </div>
                 </div>
             </div>
@@ -104,7 +124,7 @@ const prefix = lang === "en" ? "/en" : "";
             <div class="footer-divider"></div>
             <div class="footer-copyright">
                 <p>&copy; {currentYear} IEACE. {t.rights}</p>
-                <p class="affiliation">Trực thuộc LHH Việt Nam</p>
+                <p class="affiliation">{t.affiliation}</p>
             </div>
         </div>
     </div>

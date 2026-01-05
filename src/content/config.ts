@@ -7,6 +7,8 @@ const posts = defineCollection({
         description: z.string(),
         pubDate: z.date(),
         tag: z.enum(['general', 'case-study', 'research']),
+        lang: z.enum(['en', 'vn']).default('en'),
+        slug: z.string(),
     }),
 });
 

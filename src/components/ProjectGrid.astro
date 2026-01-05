@@ -1,0 +1,84 @@
+---
+import Card from "./Card.astro";
+
+interface Project {
+    title: string;
+    description: string;
+    category?: string;
+    date?: string;
+    image?: string;
+    slug: string;
+    featured?: boolean;
+}
+
+interface Props {
+    projects: Project[];
+    hrefPrefix?: string;
+}
+
+const { projects, hrefPrefix = "/projects" } = Astro.props;
+
+const featuredProject = projects.find((p) => p.featured);
+const otherProjects = projects.filter((p) => !p.featured);
+---
+
+<div class="tech-grid grid grid-3">
+    {
+        featuredProject && (
+            <div class="featured-span">
+                <Card
+                    title={featuredProject.title}
+                    description={featuredProject.description}
+                    category={featuredProject.category}
+                    date={featuredProject.date}
+                    image={featuredProject.image}
+                    href={`${hrefPrefix}/${featuredProject.slug}`}
+                />
+            </div>
+        )
+    }
+
+    {
+        otherProjects.map((project) => (
+            <Card
+                title={project.title}
+                description={project.description}
+                category={project.category}
+                date={project.date}
+                image={project.image}
+                href={`${hrefPrefix}/${project.slug}`}
+            />
+        ))
+    }
+</div>
+
+<style>
+    .tech-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    @media (min-width: 768px) {
+        .tech-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .tech-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    /* Make featured project span 2 columns on large screens */
+    @media (min-width: 900px) {
+        .featured-span {
+            grid-column: span 2;
+        }
+
+        .featured-span :global(.card-image-wrapper) {
+            aspect-ratio: 21/9; /* Wider cinematic feel for featured */
+        }
+    }
+</style>

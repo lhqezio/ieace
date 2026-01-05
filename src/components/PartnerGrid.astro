@@ -1,0 +1,68 @@
+---
+interface Props {
+    title: string;
+    partners: {
+        name: string;
+        logo: string;
+    }[];
+}
+
+const { title, partners } = Astro.props;
+---
+
+<section class="partners-section">
+    <div class="row text-center mb-lg">
+        <h2 class="section-title" set:html={title} />
+    </div>
+    <div class="partners-grid">
+        {
+            partners.map((partner) => (
+                <div class="partner-logo">
+                    <img src={partner.logo} alt={partner.name} />
+                </div>
+            ))
+        }
+    </div>
+</section>
+
+<style>
+    .partners-section {
+        padding: var(--spacing-xl) 0;
+    }
+    .text-center {
+        text-align: center;
+    }
+    .mb-lg {
+        margin-bottom: var(--spacing-lg);
+    }
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: var(--spacing-md);
+    }
+    .partners-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacing-xl);
+        align-items: center;
+    }
+    .partner-logo {
+        width: 140px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.6;
+        transition: all 0.3s ease;
+    }
+    .partner-logo img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+    .partner-logo:hover {
+        filter: none;
+        opacity: 1;
+        transform: scale(1.05);
+    }
+</style>

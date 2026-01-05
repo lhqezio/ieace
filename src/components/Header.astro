@@ -77,13 +77,38 @@ const switchLabel = lang === "en" ? "VN" : "EN";
                 </li>
             </ul>
         </nav>
-        <button class="mobile-menu-btn" aria-label="Toggle Menu">
+        <button
+            class="mobile-menu-btn"
+            aria-label="Toggle Menu"
+            id="mobile-menu-btn"
+        >
             <span></span>
             <span></span>
             <span></span>
         </button>
     </div>
 </header>
+
+<script>
+    const btn = document.getElementById("mobile-menu-btn");
+    const header = document.querySelector(".header");
+
+    if (btn && header) {
+        btn.addEventListener("click", () => {
+            header.classList.toggle("nav-open");
+            document.body.classList.toggle("no-scroll");
+        });
+
+        // Close menu when clicking links
+        const navLinks = document.querySelectorAll(".nav-link");
+        navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                header.classList.remove("nav-open");
+                document.body.classList.remove("no-scroll");
+            });
+        });
+    }
+</script>
 
 <style>
     .header {
@@ -155,6 +180,9 @@ const switchLabel = lang === "en" ? "VN" : "EN";
         cursor: pointer;
         flex-direction: column;
         gap: 6px;
+        position: relative;
+        z-index: 1001;
+        padding: 5px;
     }
 
     .mobile-menu-btn span {
@@ -162,15 +190,52 @@ const switchLabel = lang === "en" ? "VN" : "EN";
         width: 25px;
         height: 2px;
         background-color: var(--color-text);
+        transition: all 0.3s ease;
+    }
+
+    /* Mobile Menu Active State */
+    .nav-open .mobile-menu-btn span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .nav-open .mobile-menu-btn span:nth-child(2) {
+        opacity: 0;
+    }
+    .nav-open .mobile-menu-btn span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
     }
 
     @media (max-width: 768px) {
-        .nav {
-            display: none;
-        }
-
         .mobile-menu-btn {
             display: flex;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index: 1000;
+        }
+
+        .nav-open .nav {
+            transform: translateX(0);
+        }
+
+        .nav-list {
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+
+        .nav-link {
+            font-size: 1.5rem;
         }
     }
 
@@ -189,13 +254,12 @@ const switchLabel = lang === "en" ? "VN" : "EN";
         cursor: pointer;
     }
 
-    .separator {
-        opacity: 0.5;
-        font-size: 0.8em;
-    }
-
     .active-lang {
         color: var(--color-accent-primary);
         font-weight: 700;
+    }
+
+    :global(.no-scroll) {
+        overflow: hidden;
     }
 </style>

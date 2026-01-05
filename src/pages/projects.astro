@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
-import Card from "../components/Card.astro";
+import ProjectGrid from "../components/ProjectGrid.astro";
 
 const projects = [
     {
@@ -13,6 +13,46 @@ const projects = [
         image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800",
         slug: "south-africa-farm-city",
         featured: true,
+    },
+    {
+        title: "Cụm Năng Lượng Hòn Chuối - Cà Mau",
+        description:
+            "Xử lý nước biển thành nước ngọt và cung cấp điện sinh hoạt độc lập cho cư dân xã đảo Hòn Chuối.",
+        category: "BIỂN ĐẢO",
+        image: "https://images.unsplash.com/photo-1548179504-07be08162fc3?auto=format&fit=crop&q=80&w=800",
+        slug: "hon-chuoi-ca-mau",
+    },
+    {
+        title: "HTX Khai Quang - Phú Thọ",
+        description:
+            "Dự án phát triển năng lượng tái tạo cho nông nghiệp và dân sinh tại Hợp tác xã Khai Quang, Vĩnh Yên.",
+        category: "NLTT & NÔNG NGHIỆP",
+        image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=800",
+        slug: "khai-quang-phu-tho",
+    },
+    {
+        title: "Hybrid Gió - Mặt Trời Phú Cường",
+        description:
+            "Hệ thống năng lượng lai tạo cung cấp điện cho trạm sạc pin phương tiện giao thông tại xã Phú Cường, Hà Nội.",
+        category: "TRẠM SẠC",
+        image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=800",
+        slug: "phu-cuong-hybrid",
+    },
+    {
+        title: "Đảo Kiên Hải - Kiên Giang",
+        description:
+            "Cung cấp năng lượng cho dây chuyền xử lý nước biển và điện sinh hoạt tại Đặc khu Kiên Hải.",
+        category: "BIỂN ĐẢO",
+        image: "https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?auto=format&fit=crop&q=80&w=800",
+        slug: "kien-hai-kien-giang",
+    },
+    {
+        title: "Trạm Sạc Solar Yên Viên",
+        description:
+            "Dự án ứng dụng năng lượng mặt trời cho trạm sạc xe điện tại Yên Viên, Hà Nội.",
+        category: "TRẠM SẠC",
+        image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800",
+        slug: "yen-vien-solar",
     },
     {
         title: "Điện Mặt Trời Viettel",
@@ -33,7 +73,7 @@ const projects = [
     {
         title: "Thiết Bị Đào Tạo Nghề",
         description:
-            "Cung cấp hệ thống năng lượng tái tạo cho các trung tâm tại Lai Châu, Sóc Sơn và Thái Nguyên.",
+            "Cung cấp hệ thống năng lượng tái tạo cho các trung tâm tại Lai Châu, Sóc Sơn và Thái Nguyen.",
         category: "GIÁO DỤC",
         image: "/images/project-training.jpg",
         slug: "vocational-training",
@@ -44,6 +84,7 @@ const projects = [
             "Hợp tác nghiên cứu ứng dụng AI trong công nghệ năng lượng với Đại học Bách khoa Hà Nội.",
         category: "NGHIÊN CỨU",
         slug: "hust-research",
+        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800",
     },
     {
         title: "Nâng Cấp Cao Đẳng Hàng Hải I",
@@ -51,6 +92,7 @@ const projects = [
             "Hiện đại hóa các phòng thí nghiệm thiết bị điện và hàng hải để đáp ứng tiêu chuẩn quốc tế.",
         category: "GIÁO DỤC",
         slug: "maritime-college",
+        image: "https://images.unsplash.com/photo-1544717297-fa95b3ee51f8?auto=format&fit=crop&q=80&w=800",
     },
     {
         title: "Viettel Cambodia",
@@ -58,11 +100,9 @@ const projects = [
             "Tư vấn và thiết kế giải pháp điện mặt trời net-zero xuyên biên giới.",
         category: "TƯ VẤN",
         slug: "viettel-cambodia",
+        image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=800",
     },
 ];
-
-const featuredProject = projects.find((p) => p.featured);
-const otherProjects = projects.filter((p) => !p.featured);
 ---
 
 <Layout title="Dự Án Tiêu Biểu">
@@ -79,56 +119,12 @@ const otherProjects = projects.filter((p) => !p.featured);
     </Section>
 
     <Section>
-        <!-- Tech Grid Layout -->
-        <div class="tech-grid grid grid-3">
-            {
-                featuredProject && (
-                    <div class="featured-span">
-                        <Card
-                            title={featuredProject.title}
-                            description={featuredProject.description}
-                            category={featuredProject.category}
-                            date={featuredProject.date}
-                            image={featuredProject.image}
-                            href={`/projects/${featuredProject.slug}`}
-                        />
-                    </div>
-                )
-            }
-
-            {
-                otherProjects.map((project) => (
-                    <Card
-                        title={project.title}
-                        description={project.description}
-                        category={project.category}
-                        date={project.date}
-                        image={project.image}
-                        href={`/projects/${project.slug}`}
-                    />
-                ))
-            }
-        </div>
+        <ProjectGrid projects={projects} />
     </Section>
 </Layout>
 
 <style>
     .page-header-section {
         padding-top: var(--spacing-xl);
-    }
-
-    .tech-grid {
-        /* More rigid grid */
-    }
-
-    /* Make featured project span 2 columns on large screens */
-    @media (min-width: 900px) {
-        .featured-span {
-            grid-column: span 2;
-        }
-
-        .featured-span :global(.card-image-wrapper) {
-            aspect-ratio: 21/9; /* Wider cinematic feel for featured */
-        }
     }
 </style>

@@ -1,23 +1,61 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Section from "../../components/Section.astro";
-import Card from "../../components/Card.astro";
+import ProjectGrid from "../../components/ProjectGrid.astro";
 
 const projects = [
     {
-        title: "KwaZulu Natal & Northern Cape Farm City",
+        title: "South Africa Mega-Project",
         description:
-            "€6 Billion Mega-project in South Africa implementing the 'Farm City' initiative for high-tech agriculture and renewable energy.",
-        category: "ONGOING",
-        date: "JAN 2026",
+            "IEACE signs partnership for Farm City project in South Africa.",
+        category: "Agriculture - City",
         image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800",
         slug: "south-africa-farm-city",
         featured: true,
     },
     {
+        title: "Hon Chuoi Energy Cluster - Ca Mau",
+        description:
+            "Seawater desalination and independent power supply for residents of Hon Chuoi Island.",
+        category: "ISLAND & SEA",
+        image: "https://images.unsplash.com/photo-1548179504-07be08162fc3?auto=format&fit=crop&q=80&w=800",
+        slug: "hon-chuoi-ca-mau",
+    },
+    {
+        title: "Khai Quang Cooperative - Phu Tho",
+        description:
+            "Renewable energy development for agriculture and daily life at Khai Quang Cooperative, Vinh Yen.",
+        category: "RE & AGRICULTURE",
+        image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=800",
+        slug: "khai-quang-phu-tho",
+    },
+    {
+        title: "Phu Cuong Wind - Solar Hybrid",
+        description:
+            "Combined Wind and Solar power system to ensure stable energy supply in Phu Cuong.",
+        category: "HYBRID ENERGY",
+        image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=800",
+        slug: "phu-cuong-hybrid",
+    },
+    {
+        title: "Kien Hai Island - Kien Giang",
+        description:
+            "Deployment of sustainable energy solutions for the island district of Kien Hai, Kien Giang.",
+        category: "ISLAND & SEA",
+        image: "https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?auto=format&fit=crop&q=80&w=800",
+        slug: "kien-hai-kien-giang",
+    },
+    {
+        title: "Yen Vien Solar Charging Station",
+        description: "Solar-powered charging station pilot model in Yen Vien.",
+        category: "SMART CITY",
+        image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800",
+        slug: "yen-vien-solar",
+    },
+    {
         title: "Viettel Solar Power",
         description:
-            "Installation of 3.45KW and 1.5KW solar power systems for BTS stations. Optimizing renewable integration for telecom.",
+            "Installation of solar power systems for BTS telecom stations.",
         category: "RENEWABLE ENERGY",
         image: "/images/project-solar.jpg",
         slug: "viettel-solar",
@@ -25,7 +63,7 @@ const projects = [
     {
         title: "Thanh Hoa Urban Development",
         description:
-            "Renewable energy system development for Socio-Economic Comprehensive Development Project.",
+            "Renewable energy system for Socio-Economic Comprehensive Development Project.",
         category: "DEVELOPMENT",
         image: "/images/project-urban.jpg",
         slug: "thanh-hoa-urban",
@@ -33,7 +71,7 @@ const projects = [
     {
         title: "Vocational Training Equipment",
         description:
-            "Supply of renewable energy systems for Lai Chau, Soc Son, and Thai Nguyen centers.",
+            "Supply of renewable energy training systems for vocational centers.",
         category: "EDUCATION",
         image: "/images/project-training.jpg",
         slug: "vocational-training",
@@ -44,25 +82,25 @@ const projects = [
             "Joint research on AI application in energy technology with Hanoi University of Science and Technology.",
         category: "RESEARCH",
         slug: "hust-research",
+        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800",
     },
     {
         title: "Maritime College I Upgrade",
         description:
-            "Modernizing electrical and marine equipment laboratories to meet international standards.",
+            "Modernization of electrical and marine equipment laboratories to meet international maritime safety standards.",
         category: "EDUCATION",
         slug: "maritime-college",
+        image: "https://images.unsplash.com/photo-1544717297-fa95b3ee51f8?auto=format&fit=crop&q=80&w=800",
     },
     {
         title: "Viettel Cambodia",
         description:
-            "Cross-border consulting and design for off-grid solar solutions.",
-        category: "CONSULTING",
+            "Tư vấn và thiết kế giải pháp điện mặt trời net-zero xuyên biên giới.",
+        category: "TƯ VẤN",
         slug: "viettel-cambodia",
+        image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=800",
     },
 ];
-
-const featuredProject = projects.find((p) => p.featured);
-const otherProjects = projects.filter((p) => !p.featured);
 ---
 
 <Layout title="Projects Protocol">
@@ -79,56 +117,12 @@ const otherProjects = projects.filter((p) => !p.featured);
     </Section>
 
     <Section>
-        <!-- Tech Grid Layout -->
-        <div class="tech-grid grid grid-3">
-            {
-                featuredProject && (
-                    <div class="featured-span">
-                        <Card
-                            title={featuredProject.title}
-                            description={featuredProject.description}
-                            category={featuredProject.category}
-                            date={featuredProject.date}
-                            image={featuredProject.image}
-                            href={`/en/projects/${featuredProject.slug}`}
-                        />
-                    </div>
-                )
-            }
-
-            {
-                otherProjects.map((project) => (
-                    <Card
-                        title={project.title}
-                        description={project.description}
-                        category={project.category}
-                        date={project.date}
-                        image={project.image}
-                        href={`/en/projects/${project.slug}`}
-                    />
-                ))
-            }
-        </div>
+        <ProjectGrid projects={projects} hrefPrefix="/en/projects" />
     </Section>
 </Layout>
 
 <style>
     .page-header-section {
         padding-top: var(--spacing-xl);
-    }
-
-    .tech-grid {
-        /* More rigid grid */
-    }
-
-    /* Make featured project span 2 columns on large screens */
-    @media (min-width: 900px) {
-        .featured-span {
-            grid-column: span 2;
-        }
-
-        .featured-span :global(.card-image-wrapper) {
-            aspect-ratio: 21/9; /* Wider cinematic feel for featured */
-        }
     }
 </style>

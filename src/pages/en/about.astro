@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Section from "../../components/Section.astro";
+import LeaderCard from "../../components/LeaderCard.astro";
 ---
 
 <Layout title="Institute Dossier">
@@ -78,21 +79,18 @@ import Section from "../../components/Section.astro";
                     <h3 class="seal-title">OFFICIAL AUTHORIZATION</h3>
                     <p class="seal-text">INSTITUTIONAL APPROVED ACTIVITY</p>
                 </div>
-                <div class="leadership-card">
-                    <div class="leader-img">
-                        <!-- Placeholder for Director
--->
-                        <div class="placeholder-face"></div>
-                    </div>
-                    <div class="leader-info">
-                        <h3 class="leader-name">Dr. Le Hong Nam</h3>
-                        <span class="leader-role">DIRECTOR GENERAL</span>
-                        <p class="leader-bio">
-                            Leading national efforts in AI-driven energy
-                            optimization and smart grid infrastructure.
-                        </p>
-                    </div>
-                </div>
+
+                <LeaderCard
+                    name="Dr. Le Hong Nam"
+                    role="DIRECTOR GENERAL & CHAIRMAN"
+                    bio="Leading national efforts in AI-driven energy optimization and smart grid infrastructure."
+                />
+
+                <LeaderCard
+                    name="Assoc. Prof. Dr. Tran Trong Minh"
+                    role="CHAIRMAN OF SCIENTIFIC COUNCIL"
+                    bio="Directing strategic scientific research and advanced technology development."
+                />
             </div>
         </div>
     </Section>
@@ -179,7 +177,7 @@ import Section from "../../components/Section.astro";
         font-size: 1.5rem;
         font-weight: 700;
         font-family: var(--font-heading);
-    } /* Right Column Styles */
+    }
     .official-seal-card {
         border: 1px solid var(--color-border);
         padding: var(--spacing-md);
@@ -204,48 +202,6 @@ import Section from "../../components/Section.astro";
         font-size: 0.7rem;
         color: var(--color-text-muted);
     }
-    .leadership-card {
-        border: 1px solid var(--color-border);
-        background: white;
-    }
-    .leader-img {
-        height: 200px;
-        background: #e0e0e0;
-        position: relative;
-        overflow: hidden;
-    }
-    .placeholder-face {
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-            45deg,
-            #eee 25%,
-            #f5f5f5 25%,
-            #f5f5f5 50%,
-            #eee 50%,
-            #eee 75%,
-            #f5f5f5 75%,
-            #f5f5f5 100%
-        );
-        background-size: 20px 20px;
-    }
-    .leader-info {
-        padding: var(--spacing-md);
-    }
-    .leader-name {
-        font-size: 1.2rem;
-        margin-bottom: 4px;
-    }
-    .leader-role {
-        font-size: 0.7rem;
-        color: var(--color-accent-primary);
-        display: block;
-        margin-bottom: var(--spacing-md);
-    }
-    .leader-bio {
-        font-size: 0.9rem;
-        color: var(--color-text-muted);
-    } /* Competency Cards */
     .competency-card {
         border: 1px solid var(--color-border);
         padding: var(--spacing-md);
@@ -260,13 +216,5 @@ import Section from "../../components/Section.astro";
         font-family: var(--font-heading);
         font-size: 1.2rem;
         margin-bottom: var(--spacing-sm);
-    }
-    @keyframes rotate {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(360deg);
-        }
     }
 </style>

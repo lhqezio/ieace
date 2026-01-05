@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Section from "../../components/Section.astro";
-import Card from "../../components/Card.astro";
+import ServiceCardLg from "../../components/ServiceCardLg.astro";
 ---
 
 <Layout title="Services & Research">
@@ -18,95 +18,35 @@ import Card from "../../components/Card.astro";
 		</div>
 	</Section>
 
-	<Section background="secondary">
-		<div class="service-block">
-			<div class="service-text">
-				<h2 class="section-heading">Scientific Research</h2>
-				<div class="service-item">
-					<h3>Renewable Energy</h3>
-					<p>
-						High-level research and implementation of Solar, Wind,
-						Hydropower, and Tidal energy systems. We focus on
-						optimizing efficiency and nationwide grid integration.
-					</p>
-				</div>
-				<div class="service-item">
-					<h3>Automation & AI</h3>
-					<p>Developing intelligent algorithms for:</p>
-					<ul class="feature-list">
-						<li>
-							Energy consumption optimization and load balancing.
-						</li>
-						<li>
-							Predictive maintenance for electrical systems to
-							minimize downtime.
-						</li>
-						<li>
-							Intelligent automation of industrial processes and
-							control systems.
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="service-image">
-				<img
-					src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=800"
-					alt="Solar Energy Panels"
-				/>
-			</div>
-		</div>
-	</Section>
-
 	<Section>
-		<h2
-			class="section-heading"
-			style="text-align: center; margin-bottom: var(--spacing-xl);"
-		>
-			Tech Transfer & Industrial Services
-		</h2>
-		<div class="grid grid-3">
-			<Card
-				title="Industrial Testing"
-				description="Rigorous manufacturing inspection for industrial systems, mechatronic equipment, and process control."
+		<div class="services-grid">
+			<ServiceCardLg
+				title="Green & Renewable Energy"
+				description="Bridging scientific research with practical application. Design consulting for independent renewable energy clusters (Wind, Solar, Biogas...). Power supply for off-grid communities and charging stations."
+				image="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&q=80&w=800"
+				alt="Renewable Energy"
 			/>
-			<Card
-				title="Technology Transfer"
-				description="Bridging the gap by moving scientific research results into active production and operation environments."
-			/>
-			<Card
-				title="Professional Training"
-				description="Hosting scientific workshops, specialized seminars, and advanced technology training programs."
-			/>
-		</div>
-	</Section>
 
-	<Section background="secondary">
-		<div class="service-block reverse">
-			<div class="service-text">
-				<h2 class="section-heading">Consulting & Design</h2>
-				<div class="service-item">
-					<h3>Design & Construction</h3>
-					<p>
-						Professional design and construction of technical
-						systems for civil works, high-end office buildings, and
-						modern industrial plants.
-					</p>
-				</div>
-				<div class="service-item">
-					<h3>AI Integration Consulting</h3>
-					<p>
-						Strategic advisory on integrating AI and automation
-						technologies into existing infrastructure to drive
-						efficiency and sustainability.
-					</p>
-				</div>
-			</div>
-			<div class="service-image">
-				<img
-					src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800"
-					alt="Modern Architecture & Consulting"
-				/>
-			</div>
+			<ServiceCardLg
+				title="Automation & IoT/AI"
+				description="Developing smart control algorithms. Digitizing transmission grids and optimizing energy consumption. Applying AI in predictive maintenance and industrial system operation."
+				image="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800"
+				alt="Automation & AI"
+			/>
+
+			<ServiceCardLg
+				title="Environment & Climate Change"
+				description="Assessing environmental impacts (DTM/EIA) for industrial projects. Researching sustainable waste treatment solutions and monitoring climate change."
+				image="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800"
+				alt="Environment"
+			/>
+
+			<ServiceCardLg
+				title="Green Transport & Agri-Machinery"
+				description="Researching electric vehicles and charging station infrastructure. Developing smart agricultural machinery to mechanize farming and improve productivity."
+				image="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=800"
+				alt="Green Transport"
+			/>
 		</div>
 	</Section>
 </Layout>
@@ -115,120 +55,33 @@ import Card from "../../components/Card.astro";
 	.page-header {
 		padding-top: var(--spacing-xl);
 		padding-bottom: var(--spacing-xl);
+		text-align: center;
 	}
 
 	.page-title {
-		font-size: 4rem;
+		font-size: 3.5rem;
 		margin-bottom: var(--spacing-md);
-		letter-spacing: -0.03em;
+		letter-spacing: -0.02em;
 	}
 
 	.page-intro {
-		font-size: 1.25rem;
+		font-size: 1.2rem;
 		color: var(--color-text-muted);
-		max-width: 700px;
+		max-width: 800px;
+		margin: 0 auto;
 		line-height: 1.6;
 	}
 
-	.section-heading {
-		font-size: 0.85rem;
-		text-transform: uppercase;
-		color: var(--color-accent-primary);
-		letter-spacing: 0.1em;
-		margin-bottom: var(--spacing-lg);
-		display: block;
-		font-weight: 700;
-	}
-
-	.service-block {
+	.services-grid {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: var(--spacing-xl);
-		align-items: center;
-	}
-
-	.service-block.reverse {
-		direction: rtl;
-	}
-
-	.service-block.reverse > * {
-		direction: ltr;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 40px;
+		margin-top: var(--spacing-lg);
 	}
 
 	@media (max-width: 900px) {
-		.service-block {
+		.services-grid {
 			grid-template-columns: 1fr;
 		}
-		.service-block.reverse {
-			direction: ltr;
-		}
-	}
-
-	.service-item {
-		margin-bottom: var(--spacing-xl);
-	}
-
-	.service-item h3 {
-		font-size: 1.8rem;
-		margin-bottom: var(--spacing-sm);
-		color: var(--color-text);
-		position: relative;
-		display: inline-block;
-	}
-
-	.service-item h3::after {
-		content: "";
-		position: absolute;
-		bottom: -4px;
-		left: 0;
-		width: 40px;
-		height: 3px;
-		background: var(--color-accent-primary);
-	}
-
-	.service-item p {
-		color: var(--color-text-muted);
-		font-size: 1.1rem;
-		line-height: 1.6;
-	}
-
-	.feature-list {
-		list-style: none;
-		padding: 0;
-		margin-top: var(--spacing-md);
-	}
-
-	.feature-list li {
-		position: relative;
-		padding-left: 1.5rem;
-		margin-bottom: 0.8rem;
-		color: var(--color-text-muted);
-	}
-
-	.feature-list li::before {
-		content: "→";
-		position: absolute;
-		left: 0;
-		color: var(--color-accent-primary);
-		font-family: var(--font-mono);
-	}
-
-	.service-image {
-		border-radius: 8px;
-		overflow: hidden;
-		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-		border: 1px solid var(--color-border);
-	}
-
-	.service-image img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		display: block;
-		transition: transform 0.5s ease;
-	}
-
-	.service-image:hover img {
-		transform: scale(1.05);
 	}
 </style>
