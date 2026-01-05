@@ -6,19 +6,20 @@ import Card from "../components/Card.astro";
 import Mission from "../components/Mission.astro";
 import ResearchPartners from "../components/ResearchPartners.astro";
 import PartnerGrid from "../components/PartnerGrid.astro";
+import NoticeBanner from "../components/NoticeBanner.astro";
 
 const projects = [
 	{
-		title: "Điện Mặt Trời Viettel",
+		title: "Cụm Năng Lượng Hòn Chuối",
 		description:
-			"Hệ thống năng lượng mặt trời tối ưu hóa cho các trạm BTS của Viettel.",
-		href: "/projects/viettel-solar",
+			"Xử lý nước biển thành nước ngọt và cung cấp điện sinh hoạt độc lập.",
+		href: "/projects/hon-chuoi-ca-mau",
 	},
 	{
-		title: "Điện Mặt Trời Viettel",
+		title: "Hybrid Gió - Mặt Trời Phú Cường",
 		description:
-			"Hệ thống năng lượng mặt trời tối ưu hóa cho các trạm BTS của Viettel.",
-		href: "/projects/viettel-solar",
+			"Hệ thống năng lượng lai tạo cung cấp điện cho trạm sạc pin phương tiện.",
+		href: "/projects/phu-cuong-hybrid",
 	},
 	{
 		title: "Nghiên Cứu AI cùng HUST",
@@ -79,6 +80,14 @@ const strategicPartners = [
 		secondaryBtnLink="/contact"
 	/>
 
+	<NoticeBanner
+		badgeText="THÔNG BÁO"
+		title="Đang Cập Nhật Hệ Thống"
+		message="Chúng tôi đang thực hiện làm mới nhận diện thương hiệu và cập nhật hình ảnh dự án thực tế. Cảm ơn sự kiên nhẫn của quý vị."
+		ctaText="LIÊN HỆ CHI TIẾT"
+		ctaLink="/contact"
+	/>
+
 	<Section>
 		<Mission
 			title="Sứ Mệnh <span class='text-accent'>Tiên Phong</span>"
@@ -97,6 +106,14 @@ const strategicPartners = [
 			<h2 class="section-title">
 				Tin Tức <span class="text-accent">Mới Nhất</span>
 			</h2>
+			<div class="section-disclaimer">
+				<p>
+					* Chúng tôi đang trong quá trình làm lại nhận diện thương
+					hiệu. Trang web đang được cập nhật với hình ảnh dự án thực
+					tế. Cảm ơn sự kiên nhẫn của quý vị.
+				</p>
+				<a href="/contact" class="disclaimer-cta">LIÊN HỆ CHI TIẾT</a>
+			</div>
 		</div>
 		<div class="grid grid-3">
 			{
@@ -127,8 +144,9 @@ const strategicPartners = [
 
 	<Section background="secondary">
 		<PartnerGrid
-			title="Đối Tác <span class='text-accent'>Chiến Lược</span>"
+			title="Khách Hàng & <span class='text-accent'>Đối Tác</span>"
 			partners={strategicPartners}
+			disclaimer="IEACE đã cung cấp dịch vụ tự động hóa và năng lượng sạch cho các doanh nghiệp hàng đầu tại Việt Nam."
 		/>
 	</Section>
 </Layout>

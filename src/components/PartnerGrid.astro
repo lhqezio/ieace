@@ -5,9 +5,10 @@ interface Props {
         name: string;
         logo: string;
     }[];
+    disclaimer?: string;
 }
 
-const { title, partners } = Astro.props;
+const { title, partners, disclaimer } = Astro.props;
 ---
 
 <section class="partners-section">
@@ -23,6 +24,13 @@ const { title, partners } = Astro.props;
             ))
         }
     </div>
+    {
+        disclaimer && (
+            <div class="partners-disclaimer">
+                <p>{disclaimer}</p>
+            </div>
+        )
+    }
 </section>
 
 <style>
@@ -64,5 +72,21 @@ const { title, partners } = Astro.props;
         filter: none;
         opacity: 1;
         transform: scale(1.05);
+    }
+    .partners-disclaimer {
+        margin-top: var(--spacing-lg);
+        text-align: center;
+        color: var(--color-text-muted);
+        font-size: 0.9rem;
+        font-style: italic;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media (max-width: 768px) {
+        .partner-logo {
+            opacity: 1;
+        }
     }
 </style>

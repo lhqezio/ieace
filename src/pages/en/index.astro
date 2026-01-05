@@ -6,33 +6,34 @@ import Card from "../../components/Card.astro";
 import Mission from "../../components/Mission.astro";
 import ResearchPartners from "../../components/ResearchPartners.astro";
 import PartnerGrid from "../../components/PartnerGrid.astro";
+import NoticeBanner from "../../components/NoticeBanner.astro";
 
 const projects = [
     {
-        title: "Viettel Solar Power",
+        title: "Hon Chuoi Energy Cluster",
         description:
-            "Installation of 3.45KW and 1.5KW solar power systems for BTS stations.",
-        image: "/images/project-solar.jpg",
-        href: "/en/projects/viettel-solar",
+            "Seawater desalination and independent power supply for island residents.",
+        image: "https://images.unsplash.com/photo-1548179504-07be08162fc3?auto=format&fit=crop&q=80&w=800",
+        href: "/en/projects/hon-chuoi-ca-mau",
     },
     {
-        title: "Viettel Solar Power",
+        title: "Wind - Solar Hybrid System",
         description:
-            "Installation of 3.45KW and 1.5KW solar power systems for BTS stations.",
-        image: "/images/project-solar.jpg",
-        href: "/en/projects/viettel-solar",
+            "Renewable energy hybrid system providing power for vehicle charging clusters.",
+        image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&q=80&w=800",
+        href: "/en/projects/phu-cuong-hybrid",
     },
     {
-        title: "Thanh Hoa Urban Development",
+        title: "HUST Research Collaboration",
         description:
-            "Renewable energy system development for Socio-Economic Comprehensive Development Project.",
-        image: "/images/project-urban.jpg",
-        href: "/en/projects/thanh-hoa-urban",
+            "Joint research on AI application in energy technology with Hanoi University.",
+        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800",
+        href: "/en/projects/hust-research",
     },
     {
-        title: "Vocational Training Equipment",
+        title: "Vocational Training",
         description:
-            "Supply of renewable energy systems for Lai Chau, Soc Son, and Thai Nguyen centers.",
+            "Providing renewable energy training systems for various vocational centers.",
         image: "/images/project-training.jpg",
         href: "/en/projects/vocational-training",
     },
@@ -83,6 +84,14 @@ const strategicPartners = [
         secondaryBtnLink="/en/contact"
     />
 
+    <NoticeBanner
+        badgeText="NOTICE"
+        title="System Update in Progress"
+        message="We are currently refreshing our brand identity and updating the site with actual project photos. Thank you for your patience."
+        ctaText="CONTACT FOR DETAILS"
+        ctaLink="/en/contact"
+    />
+
     <Section>
         <Mission
             title="Pioneering <span class='text-accent'>Mission</span>"
@@ -99,8 +108,17 @@ const strategicPartners = [
     <Section background="secondary">
         <div class="row text-center mb-lg">
             <h2 class="section-title">
-                Latest <span class="text-accent">Projcets</span>
+                Latest <span class="text-accent">Projects</span>
             </h2>
+            <div class="section-disclaimer">
+                <p>
+                    * We are currently rebranding. The site is being updated
+                    with actual project photos. Thank you for your patience.
+                </p>
+                <a href="/en/contact" class="disclaimer-cta"
+                    >CONTACT FOR DETAILS</a
+                >
+            </div>
         </div>
         <div class="grid grid-3">
             {
@@ -131,8 +149,9 @@ const strategicPartners = [
 
     <Section background="secondary">
         <PartnerGrid
-            title="Strategic <span class='text-accent'>Partners</span>"
+            title="Clients & <span class='text-accent'>Partners</span>"
             partners={strategicPartners}
+            disclaimer="IEACE has provided automation and clean energy services to leading enterprises in Vietnam."
         />
     </Section>
 </Layout>

@@ -1,0 +1,115 @@
+---
+interface Props {
+    badgeText: string;
+    title: string;
+    message: string;
+    ctaText: string;
+    ctaLink: string;
+}
+
+const { badgeText, title, message, ctaText, ctaLink } = Astro.props;
+---
+
+<div class="notice-banner-container">
+    <div class="notice-banner">
+        <div class="notice-content">
+            <div class="notice-badge">{badgeText}</div>
+            <h3 class="notice-title">{title}</h3>
+            <p class="notice-message">{message}</p>
+        </div>
+        <div class="notice-actions">
+            <a href={ctaLink} class="btn btn-glass">{ctaText}</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .notice-banner-container {
+        padding: 0 var(--spacing-md);
+        margin-top: -30px;
+        position: relative;
+        z-index: 10;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .notice-banner {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 16px;
+        padding: var(--spacing-lg);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-lg);
+        box-shadow:
+            0 10px 40px rgba(0, 0, 0, 0.05),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    }
+
+    .notice-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        background: var(--color-accent-primary);
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 700;
+        border-radius: 100px;
+        margin-bottom: var(--spacing-sm);
+        letter-spacing: 0.1em;
+    }
+
+    .notice-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+        color: var(--color-text);
+    }
+
+    .notice-message {
+        color: var(--color-text-muted);
+        font-size: 1rem;
+        line-height: 1.5;
+        max-width: 600px;
+    }
+
+    .btn-glass {
+        background: rgba(16, 185, 129, 0.1);
+        color: var(--color-accent-primary);
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .btn-glass:hover {
+        background: var(--color-accent-primary);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+    }
+
+    @media (max-width: 768px) {
+        .notice-banner {
+            flex-direction: column;
+            text-align: center;
+            padding: var(--spacing-md);
+        }
+
+        .notice-message {
+            margin: 0 auto;
+        }
+
+        .notice-actions {
+            width: 100%;
+        }
+
+        .btn-glass {
+            display: block;
+            width: 100%;
+        }
+    }
+</style>
