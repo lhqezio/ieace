@@ -39,7 +39,9 @@ const switchLabel = lang === "en" ? "VN" : "EN";
 
 <header class="header">
     <div class="container header-content">
-        <a href={lang === "en" ? "/en" : "/"} class="logo">IEACE</a>
+        <a href={lang === "en" ? "/en" : "/"} class="logo"
+            >IEA<span class="text-accent">CE</span></a
+        >
         <nav class="nav">
             <ul class="nav-list">
                 {
@@ -131,12 +133,12 @@ const switchLabel = lang === "en" ? "VN" : "EN";
     }
 
     .logo {
-        font-family: var(--font-heading);
+        font-family: "Sora", sans-serif;
         font-size: 1.5rem;
         font-weight: 700;
-        color: var(--color-accent-primary);
+        color: var(--color-text);
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: -0.02em;
     }
 
     .nav-list {
