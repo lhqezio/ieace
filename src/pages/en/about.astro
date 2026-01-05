@@ -8,11 +8,13 @@ import LeaderCard from "../../components/LeaderCard.astro";
     <Section className="page-header-section">
         <div class="page-header">
             <h1 class="page-title">
-                National <span class="text-accent">Mandate</span>
+                Institute <span class="text-accent">Dossier</span>
             </h1>
             <p class="page-intro">
-                Institute of Automation and Clean Energy (IEACE). Under the
-                Vietnam Union of Science and Technology Associations.
+                Institute of Automation and Clean Energy (IEACE). Research
+                entity under the Vietnam Union of Science and Technology
+                Associations. Operating under License No. A-1128 issued by the
+                Ministry of Science and Technology of Vietnam.
             </p>
         </div>
     </Section>
@@ -37,7 +39,9 @@ import LeaderCard from "../../components/LeaderCard.astro";
                 </p>
                 <div class="stat-grid grid grid-2">
                     <div class="stat-card">
-                        <span class="stat-label">OPERATING LICENSE</span>
+                        <span class="stat-label"
+                            >BY MINISTRY OF SCIENCE & TECH</span
+                        >
                         <span class="stat-value text-accent">A-1128</span>
                     </div>
                     <div class="stat-card">
@@ -123,6 +127,12 @@ import LeaderCard from "../../components/LeaderCard.astro";
 <style>
     .page-header-section {
         padding-top: var(--spacing-xl);
+    }
+    .page-title {
+        font-size: 3.5rem;
+        margin-bottom: var(--spacing-md);
+        letter-spacing: -0.03em;
+        font-weight: 800;
     }
     .dossier-grid {
         display: grid;

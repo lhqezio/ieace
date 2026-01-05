@@ -8,11 +8,13 @@ import LeaderCard from "../components/LeaderCard.astro";
 	<Section className="page-header-section">
 		<div class="page-header">
 			<h1 class="page-title">
-				Sứ Mệnh <span class="text-accent">Quốc Gia</span>
+				Hồ Sơ <span class="text-accent">Viện IEACE</span>
 			</h1>
 			<p class="page-intro">
-				Viện Điện Tử Tự Động Hóa Năng Lượng Sạch (IEACE) nghành thuộc
-				Liên hiệp các Hội Khoa học và Kỹ thuật Việt Nam.
+				Viện Điện Tử Tự Động Hóa Năng Lượng Sạch (IEACE). Đơn vị nghiên
+				cứu thuộc Liên hiệp các Hội Khoa học và Kỹ thuật Việt Nam. Hoạt
+				động theo GPHĐ số A-1128 do Bộ Khoa học và Công nghệ Việt Nam
+				cấp.
 			</p>
 		</div>
 	</Section>
@@ -38,7 +40,9 @@ import LeaderCard from "../components/LeaderCard.astro";
 
 				<div class="stat-grid grid grid-2">
 					<div class="stat-card">
-						<span class="stat-label">GIẤY PHÉP HOẠT ĐỘNG</span>
+						<span class="stat-label"
+							>BỘ KHOA HỌC & CÔNG NGHỆ CẤP</span
+						>
 						<span class="stat-value text-accent">A-1128</span>
 					</div>
 					<div class="stat-card">
@@ -127,6 +131,13 @@ import LeaderCard from "../components/LeaderCard.astro";
 <style>
 	.page-header-section {
 		padding-top: var(--spacing-xl);
+	}
+
+	.page-title {
+		font-size: 3.5rem;
+		margin-bottom: var(--spacing-md);
+		letter-spacing: -0.03em;
+		font-weight: 800;
 	}
 
 	.dossier-grid {
