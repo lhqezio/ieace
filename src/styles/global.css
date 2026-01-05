@@ -97,6 +97,26 @@ img {
   padding: 0 var(--spacing-md);
 }
 
+@media (max-width: 768px) {
+  :root {
+    --spacing-xl: 3rem;
+    --spacing-lg: 2rem;
+    --spacing-md: 1rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+  }
+
+  .page-intro {
+    font-size: 1.1rem;
+  }
+}
+
 /* Utility Classes */
 .text-accent {
   color: var(--color-accent-primary);
